@@ -135,7 +135,7 @@ c1;;v::de.uni_paderborn.fujaba.uml.common.UMLStereotype;i:qQjyw#82;v:java.lang.S
 c3;;i:qQjyw#82;name;v::Virtual Path;-;-;i:qQjyw#;
 c1;;v::de.uni_paderborn.fujaba.uml.structure.UMLPackage;i:qQjyw#92;-;i:qQjyw#;
 c3;;i:qQjyw#1;rootPackage;i:qQjyw#92;-;-;i:qQjyw#;
-c3;;i:qQjyw#1;name;v::fujaba;-;-;i:qQjyw#;
+c3;;i:qQjyw#1;name;v::ex2;-;-;i:qQjyw#;
 c1;;v::de.uni_paderborn.fujaba.uml.structure.UMLClassDiagram;i:qQjyw#A2;-;i:qQjyw#;
 c3;;i:qQjyw#1;modelRootNodes;i:qQjyw#A2;-;-;i:qQjyw#;
 c3;;i:qQjyw#A2;name;v::Main;-;-;i:qQjyw#;
