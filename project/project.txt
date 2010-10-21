@@ -29,13 +29,13 @@ COURSE project: Mancala modeling in Fujaba
   - meaningful: #beans, ending field
 
   1 First game starts
-  2 Winner starts game
-  3 only putting beans to own holes – Alice, 5 beans from a1 => a2, a3, a4, a5, a6
-  4 last bean reaches pot           – Alice, 2 beans from a5 => a6, A
-  5 beans end in own area           – Alice, 9 beans from a6 => A, b1, b2, b3, b4, b5, b6, B, a1
-  6 
-  7
-  8
+  2 Winner starts (next) game
+  3 only putting beans to own holes                – Alice, 5 beans from a1 => a2, a3, a4, a5, a6
+  4 last bean reaches pot, Alice gets another turn – Alice, 2 beans from a5 => a6, A
+  5 beans end in own area                          – Alice, 9 beans from a6 => A, b1, b2, b3, b4, b5, b6, B, a1
+  6 last bean ends in empty hole, captures opposing beans
+  7 no more seeds on Alice's side, end game
+  8 bean ends in opponent hole
   9
  10
  11
