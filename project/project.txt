@@ -7,7 +7,10 @@ COURSE project: Mancala modeling in Fujaba
 - 15 storyboard test cases
 - class diagram
 
-- user manual
+- guide through your project (and repository)
+- your project plan
+- project log
+- documentation
 
 - presentation
 
