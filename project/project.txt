@@ -36,9 +36,9 @@ COURSE project: Mancala modeling in Fujaba
   6 last bean ends in empty hole, captures opposing beans
   7 no more seeds on Alice's side, end game
   8 bean ends in opponent hole
-  9
- 10
- 11
+  9 closing the program - confirmation if ongoing game
+ 10 aborting the game/restarting from beginning
+ 11 game ends in draw
  12
  13
  14
