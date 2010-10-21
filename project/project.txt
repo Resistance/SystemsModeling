@@ -1,0 +1,55 @@
+COURSE project: Mancala modeling in Fujaba
+
+- 5 weeks left
+
+- 30 user stories
+- 40 object diagrams
+- 15 storyboard test cases
+- class diagram
+
+- user manual
+
+- presentation
+
+———————————————————————————————————————
+|   | b6 | b5 | b4 | b3 | b2 | b1 |   | 
+| B |—————————————————————————————| A |
+|   | a1 | a2 | a3 | a4 | a5 | a6 |   | 
+———————————————————————————————————————
+
+
+### User Stories
+  - Very concrete example of the problem to solve (assume the development project already exists)
+  - Very short (less than half a page)
+  - Write down as: Title, Pre condition, Action (<3 sentences), Post condition
+  
+  - meaningful: #beans, ending field
+
+  1 First game starts
+  2 Winner starts game
+  3 only putting beans to own holes – Alice, 5 beans from a1 => a2, a3, a4, a5, a6
+  4 last bean reaches pot           – Alice, 2 beans from a5 => a6, A
+  5 beans end in own area           – Alice, 9 beans from a6 => A, b1, b2, b3, b4, b5, b6, B, a1
+  6 
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+
+
+### Object diagrams
+-> for 20 of those user stories, marked with >
+
+
+
+### Test Cases
+- 
