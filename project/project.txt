@@ -72,7 +72,6 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
   9 closing the program - confirmation if ongoing game
  10 aborting the game/restarting from beginning
  11 game ends in draw
-
  12 open game - starting the program
  13 turn changes from player A to player B - buttons activate/change
  14 click history button - opens another window 
@@ -80,6 +79,18 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
  16 enter player names and okey
  17 enter player names and press cancel
  18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
 
 User Story 3
 Precondition: Bob has 4 seeds in each of his pit and Alice has 4 seeds in each of her pit. Both have a score of 0. It's Alice's turn
@@ -112,10 +123,4 @@ Postcondition: The program shows the board with filled pits and player names and
 
 
 ### Test Cases
-- 
-
-### Todo
-- Design UI
-- Find more User Stories
-- find ONE set of Mancala rules
 - 
