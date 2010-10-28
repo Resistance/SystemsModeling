@@ -13,15 +13,23 @@ public class GUI {
                 // Create a JFrame, which is a Window with "decorations", i.e.
                 // title, border and close-button
                 JFrame window = new JFrame("Mancala");
-                window.setLayout(new GridLayout(2, 1));
+                window.setLayout(new BorderLayout());
 
+
+                // Set up Elements ====
+                // Panels
                 JPanel field = new JPanel();
                 field.setLayout(new BorderLayout());
                 
                 JPanel holes = new JPanel();
                 holes.setLayout(new GridLayout(2,6));
                 
-                // Set up Elements ====
+                JPanel northern = new JPanel();
+                northern.setLayout(new FlowLayout());
+                
+                JPanel southern = new JPanel();
+                southern.setLayout(new FlowLayout());
+                
                 // Labels
                 JLabel playerA = new JLabel("Mängija A");
                 JLabel playerB = new JLabel("Mängija B");
@@ -45,6 +53,9 @@ public class GUI {
                 JButton b5 = new JButton("4");
                 JButton b6 = new JButton("4");
                 
+                JButton newGame = new JButton("Uus mäng");
+                JButton history = new JButton("Ajalugu");
+                
                 
  
                 // Add Components
@@ -61,15 +72,19 @@ public class GUI {
                 holes.add(b1);
                 holes.add(a6);
                 
+                northern.add(playerB);
+                northern.add(history);
+                southern.add(newGame);
+                southern.add(playerA);
                 
-                field.add(playerA, BorderLayout.NORTH);
-                field.add(playerB, BorderLayout.SOUTH);
+                field.add(northern, BorderLayout.NORTH);
+                field.add(southern, BorderLayout.SOUTH);
                 field.add(homeB, BorderLayout.EAST);
                 field.add(homeA, BorderLayout.WEST);
                 field.add(holes, BorderLayout.CENTER);
                 
-                window.add(field);
-                window.add(status);
+                window.add(field, BorderLayout.CENTER);
+                window.add(status, BorderLayout.SOUTH);
  
                 // final settings
                 window.pack();
