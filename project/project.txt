@@ -55,6 +55,10 @@ Precondition: Bob has 4 seeds in each of his pit and Alice has 4 seeds in each o
 Action: Alice takes 4 seeds from a1 and puts 1 in a2, a3, a4 and a5.
 Postcondition: Bob has 4 seeds in each of his pit. Alice has 0, 5, 5, 5, 5, 4 in her pits. Both have a score of 0. It's Bob's turn.
 
+User Story 4
+Precondition: Alice has 4 seeds in each of his pit. Bob has 0, 5, 5, 5, 5, 4 in his pits. Both have a score of 0. It's Alice's turn.
+Action:Alice takes 4 seeds from a3 and puts 1 in a4, a5, a6 and Alice's storage.
+Postcondition: Alice have 4 seeds in a1,a2 and 0 seeds in a3, 5 seeds in a4,a5 and a6 and 1 seed in her storage.It's Alice's turn.
 
 ### Object diagrams
 -> for 20 of those user stories, marked with >
