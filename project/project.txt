@@ -77,8 +77,8 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
  13 turn changes from player A to player B - buttons activate/change
  14 click history button - opens another window 
  15 close history window
- 16 enter player name
- 17 
+ 16 enter player names and okey
+ 17 enter player names and press cancel
  18
 
 User Story 3
@@ -90,6 +90,21 @@ User Story 4
 Precondition: Alice has 4 seeds in each of his pit. Bob has 0, 5, 5, 5, 5, 4 in his pits. Both have a score of 0. It's Alice's turn.
 Action:Alice takes 4 seeds from a3 and puts 1 in a4, a5, a6 and Alice's storage.
 Postcondition: Alice have 4 seeds in a1,a2 and 0 seeds in a3, 5 seeds in a4,a5 and a6 and 1 seed in her storage.It's Alice's turn.
+
+User story 12
+Precondition: Alices' computer is running and Alice and Bob are sitting in front of it
+Action: Alice double-clicks the program icon.
+Postcondition: The program is opened and shows the empty board with 'Start new game' and 'History' buttons
+———————————————————————————————————————
+|   | b6 | b5 | b4 | b3 | b2 | b1 |   | 
+| B |—————————————————————————————| A |
+|   | a1 | a2 | a3 | a4 | a5 | a6 |   | 
+———————————————————————————————————————
+
+User story 16
+Precondition: Player has clicked 'start new game' button and sees pop-up box with option to insert player names
+Action: Player inserts 'Alice' as first player and 'Bob' as second player and presses 'Okey'
+Postcondition: The program shows the board with filled pits and player names and it's Alices' turn.
 
 ### Object diagrams
 -> for 20 of those user stories, marked with >
