@@ -56,3 +56,9 @@ COURSE project: Mancala modeling in Fujaba
 
 ### Test Cases
 - 
+
+### Todo
+- Design UI
+- Find more User Stories
+- find ONE set of Mancala rules
+- 
