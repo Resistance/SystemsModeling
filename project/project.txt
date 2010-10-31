@@ -122,6 +122,11 @@ Precondition: Alice has 0, 0, 0, 0, 0, 1 seeds in pits a1 to a6 and a score of 1
 Action: Alice takes 1 seed from a6 and puts it in her storage.
 Postcondition: Alice has no seeds on her pits. Seeds in Bob's pits remain the same. Alice has a score of 16 and Bob has 20. Game is over with Bob as the winner.
 
+User Story 11
+Precondition: Alice has 0, 0, 0, 0, 0, 1 seeds in pits a1 to a6 and a score of 19. Bob has 2, 0, 0, 3, 2, 1 seeds in pits b1 to b6 and a score of 20.
+Action: Alice takes 1 seed from a6 and puts it in her storage.
+Postcondition: Alice has no seeds on her pits. Seeds in Bob's pits remain the same. Alice has a score of 20 and Bob has 20. Game is over, Alice and Bob are tied.
+
 User story 12
 Precondition: Alices' computer is running and Alice and Bob are sitting in front of it
 Action: Alice double-clicks the program icon.
