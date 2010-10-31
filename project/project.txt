@@ -92,6 +92,16 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
  29
  30
 
+User Story 1
+Precondition: The bottom player name textfield reads Alice, the top one Bob. Both textfields are editable. Game board is empty and disabled.
+Action: User clicks Start Game button.
+Postcondition: Player name textfields are read-only. Game board is enabled. There are 4 seeds in each pit. The scores for both players are 0. It's Alice's turn.
+
+User Story 2
+Precondition: Same as User Story 1; Bob won the previous game.
+Action: User clicks Start Game button.
+Postcondition: Same as User Story 1, except that it's Bob's turn.
+
 User Story 3
 Precondition: Bob has 4 seeds in each of his pit and Alice has 4 seeds in each of her pit. Both have a score of 0. It's Alice's turn
 Action: Alice takes 4 seeds from a1 and puts 1 in a2, a3, a4 and a5.
