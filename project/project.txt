@@ -112,6 +112,11 @@ Precondition: Alice has 4 seeds in each of his pit. Bob has 0, 5, 5, 5, 5, 4 in 
 Action:Alice takes 4 seeds from a3 and puts 1 in a4, a5, a6 and Alice's storage.
 Postcondition: Alice have 4 seeds in a1,a2 and 0 seeds in a3, 5 seeds in a4,a5 and a6 and 1 seed in her storage.It's Alice's turn.
 
+User Story 6
+Precondition: Alice has 0, 4, 4, 4, 4, 8 seeds in pits a1 to a6 and a score of 0. Bob has 4 seeds in each of his pit and a score of 0.
+Action: Alice takes 8 seeds from a6 and puts 1 in her storage, 1 to each of Bob's pit and the last one in a1.
+Postcondition: Alice has 0, 4, 4, 4, 4, 0 seeds in pits a1 to a6 and a score of 7. Bob has 5, 5, 5, 5, 5, 0 in his pits b1 to b6 and a score of 0.
+
 User story 12
 Precondition: Alices' computer is running and Alice and Bob are sitting in front of it
 Action: Alice double-clicks the program icon.
