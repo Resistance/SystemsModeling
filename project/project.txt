@@ -76,8 +76,8 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
  13 turn changes from player A to player B - buttons activate/change
  14 click history button - opens another window 
  15 close history window
- 16 enter player name
- 17
+ 16 enter player names and okey
+ 17 enter player names and press cancel
  18
  19
  20
@@ -92,6 +92,16 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
  29
  30
 
+User Story 1
+Precondition: The bottom player name textfield reads Alice, the top one Bob. Both textfields are editable. Game board is empty and disabled.
+Action: User clicks Start Game button.
+Postcondition: Player name textfields are read-only. Game board is enabled. There are 4 seeds in each pit. The scores for both players are 0. It's Alice's turn.
+
+User Story 2
+Precondition: Same as User Story 1; Bob won the previous game.
+Action: User clicks Start Game button.
+Postcondition: Same as User Story 1, except that it's Bob's turn.
+
 User Story 3
 Precondition: Bob has 4 seeds in each of his pit and Alice has 4 seeds in each of her pit. Both have a score of 0. It's Alice's turn
 Action: Alice takes 4 seeds from a1 and puts 1 in a2, a3, a4 and a5.
@@ -101,6 +111,36 @@ User Story 4
 Precondition: Alice has 4 seeds in each of his pit. Bob has 0, 5, 5, 5, 5, 4 in his pits. Both have a score of 0. It's Alice's turn.
 Action:Alice takes 4 seeds from a3 and puts 1 in a4, a5, a6 and Alice's storage.
 Postcondition: Alice have 4 seeds in a1,a2 and 0 seeds in a3, 5 seeds in a4,a5 and a6 and 1 seed in her storage.It's Alice's turn.
+
+User Story 6
+Precondition: Alice has 0, 4, 4, 4, 4, 8 seeds in pits a1 to a6 and a score of 0. Bob has 4 seeds in each of his pit and a score of 0.
+Action: Alice takes 8 seeds from a6 and puts 1 in her storage, 1 to each of Bob's pit and the last one in a1.
+Postcondition: Alice has 0, 4, 4, 4, 4, 0 seeds in pits a1 to a6 and a score of 7. Bob has 5, 5, 5, 5, 5, 0 in his pits b1 to b6 and a score of 0.
+
+User Story 7
+Precondition: Alice has 0, 0, 0, 0, 0, 1 seeds in pits a1 to a6 and a score of 15. Bob has 2, 0, 4, 3, 2, 1 seeds in pits b1 to b6 and a score of 20.
+Action: Alice takes 1 seed from a6 and puts it in her storage.
+Postcondition: Alice has no seeds on her pits. Seeds in Bob's pits remain the same. Alice has a score of 16 and Bob has 20. Game is over with Bob as the winner.
+
+User Story 11
+Precondition: Alice has 0, 0, 0, 0, 0, 1 seeds in pits a1 to a6 and a score of 19. Bob has 2, 0, 0, 3, 2, 1 seeds in pits b1 to b6 and a score of 20.
+Action: Alice takes 1 seed from a6 and puts it in her storage.
+Postcondition: Alice has no seeds on her pits. Seeds in Bob's pits remain the same. Alice has a score of 20 and Bob has 20. Game is over, Alice and Bob are tied.
+
+User story 12
+Precondition: Alices' computer is running and Alice and Bob are sitting in front of it
+Action: Alice double-clicks the program icon.
+Postcondition: The program is opened and shows the empty board with 'Start new game' and 'History' buttons
+———————————————————————————————————————
+|   | b6 | b5 | b4 | b3 | b2 | b1 |   | 
+| B |—————————————————————————————| A |
+|   | a1 | a2 | a3 | a4 | a5 | a6 |   | 
+———————————————————————————————————————
+
+User story 16
+Precondition: Player has clicked 'start new game' button and sees pop-up box with option to insert player names
+Action: Player inserts 'Alice' as first player and 'Bob' as second player and presses 'Okey'
+Postcondition: The program shows the board with filled pits and player names and it's Alices' turn.
 
 ### Object diagrams
 -> for 20 of those user stories, marked with >
