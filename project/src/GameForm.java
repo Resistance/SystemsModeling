@@ -24,7 +24,7 @@ public class GameForm {
   private JButton b6;
   private JTextPane status;
 
-  {
+  public GameForm() {
     menuBar = new JMenuBar();
     JMenu gameMenu = new JMenu("Game");
     gameMenu.add(new JMenuItem("Exit"));
@@ -34,10 +34,8 @@ public class GameForm {
   public static void main(String[] args) {
     JFrame frame = new JFrame("Game Form");
     GameForm form = new GameForm();
-    JComponent rootPanel = form.$$$getRootComponent$$$();
-    frame.getContentPane().add(rootPanel);
-    rootPanel.add(form.getMenuBar(), 1);
-//    frame.add(form.getMenuBar());
+    frame.getContentPane().add(form.$$$getRootComponent$$$());
+    frame.setJMenuBar(form.getMenuBar());
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.pack();
     frame.setVisible(true);
