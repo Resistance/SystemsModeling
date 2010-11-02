@@ -1,0 +1,23 @@
+=== ex1 ===
+
+RegularFile delegates getName() and getSize() to java.io.File
+Directory delegates getName() and getChildren() to java.io.File. getChildren() 
+returns initially empty list that is populated only when needed (DeferredFileList)
+AbstractFile has accept(FileVisitor visitor) method that just calls visitor.visit((AbstractFile)this)
+
+AbstractRecursiveFileVisitor is a base implementation for all other visitors. 
+It traverses given directory tree recursively. It uses a filter to determine whether to visit the file 
+or not (only visited if filter.matches(file) returns true). For regular files, visitRegularFile(...) is called, 
+for directories visitDirectory(...) is called. If visitDirectory(dir) returns true, 
+the directory dir is recursively visited (dir.accept((FileVisitor)this)) - otherwise, the directory contents are skipped.
+
+CountFilesVisitor and FindFilesVisitor implement "countFiles()" and "findFiles()" respectively. 
+(does not have methods with those names, but getCount() and getFiles() instead)
+
+AllFilesFilter is a filter that matches any file. It is used when we want to visit all files
+RegexFileNameFilter is a filter that matches any directory, but only regular files whose name match the given pattern.
+ To find *.java files we use the expression "^.*\\.java$"
+
+=== ex2 ===
+
+TODO
