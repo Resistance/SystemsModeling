@@ -24,10 +24,27 @@ public class GameForm {
   private JButton b6;
   private JTextPane status;
 
-  private void createUIComponents() {
+  {
     menuBar = new JMenuBar();
-    menuBar.add(new JMenuItem("Test"));
-    $$$getRootComponent$$$().add(menuBar);
+    JMenu gameMenu = new JMenu("Game");
+    gameMenu.add(new JMenuItem("Exit"));
+    menuBar.add(gameMenu);
+  }
+
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("Game Form");
+    GameForm form = new GameForm();
+    JComponent rootPanel = form.$$$getRootComponent$$$();
+    frame.getContentPane().add(rootPanel);
+    rootPanel.add(form.getMenuBar(), 1);
+//    frame.add(form.getMenuBar());
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.pack();
+    frame.setVisible(true);
+  }
+
+  public JMenuBar getMenuBar() {
+    return menuBar;
   }
 
   {
@@ -45,7 +62,6 @@ public class GameForm {
    * @noinspection ALL
    */
   private void $$$setupUI$$$() {
-    createUIComponents();
     panel1 = new JPanel();
     panel1.setLayout(new BorderLayout(0, 0));
     final JPanel panel2 = new JPanel();
@@ -147,7 +163,6 @@ public class GameForm {
     status = new JTextPane();
     status.setText("It is Alice's turn");
     panel4.add(status, BorderLayout.CENTER);
-    panel1.add(menuBar, BorderLayout.WEST);
   }
 
   /**

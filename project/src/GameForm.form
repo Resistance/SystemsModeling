@@ -145,10 +145,6 @@
           </component>
         </children>
       </grid>
-      <component id="e2e58" class="javax.swing.JMenuBar" binding="menuBar" custom-create="true">
-        <constraints border-constraint="West"/>
-        <properties/>
-      </component>
     </children>
   </grid>
 </form>
