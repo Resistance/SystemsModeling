@@ -1,0 +1,87 @@
+STATECHART:
+    top [DS]
+        watch [DS]
+            test [CS] [DS]
+                A [DS]
+                    Time [CS] [DS]
+                        Time [DS]
+                    Indiglo [CS] [DS]
+                        Off [DS]
+                        On
+                        TurningOff
+                    Mode [CS] [DS]
+                        Time [DS]
+                        Chrono
+            testingtoo [CS] [DS]
+                chronog [DS]
+                    CD [DS]
+
+ENTER:
+   N: top.watch.test.A.Indiglo.Off
+   O: gui.unsetIndiglo()
+
+ENTER:
+   N: top.watch.test.A.Time.Time
+   O: gui.increaseTimeByOne()
+gui.checkTime()
+
+ENTER:
+   N: top.watch.testingtoo.chronog.CD
+   O: gui.refreshChronoDisplay()
+
+ENTER:
+   N: top.watch.test.A.Indiglo.On
+   O: gui.setIndiglo()
+
+ENTER:
+   N: top.watch.test.A.Mode.Time
+   O: gui.refreshTimeDisplay()
+
+ENTER:
+   N: top.watch.test.A.Mode.Chrono
+   O: gui.refreshChronoDisplay()
+
+TRANSITION:
+    S: top.watch.test.A.Time.Time
+    N: top.watch.test.A.Time.Time
+    T: 1
+
+TRANSITION:
+    S: top.watch.test.A.Indiglo.Off
+    N: top.watch.test.A.Indiglo.On
+    E: topRightPressed
+
+TRANSITION:
+    S: top.watch.test.A.Indiglo.On
+    N: top.watch.test.A.Indiglo.TurningOff
+    E: topRightReleased
+
+TRANSITION:
+    S: top.watch.test.A.Indiglo.TurningOff
+    N: top.watch.test.A.Indiglo.Off
+    T: 2
+
+TRANSITION:
+    S: top.watch.test.A.Mode.Chrono
+    N: top.watch.test.A.Mode.Time
+    E: topLeftReleased
+
+TRANSITION:
+    S: top.watch.test.A.Mode.Time
+    N: top.watch.test.A.Mode.Time
+    T: 1
+
+TRANSITION:
+    S: top.watch.test.A.Mode.Chrono
+    N: top.watch.test.A.Mode.Chrono
+    T: 0.25
+
+TRANSITION:
+    S: top.watch.test.A.Indiglo.TurningOff
+    N: top.watch.test.A.Indiglo.On
+    E: topRightPressed
+
+TRANSITION:
+    S: top.watch.test.A.Mode
+    N: top.watch.testingtoo.chronog
+    E: topLeftReleased
