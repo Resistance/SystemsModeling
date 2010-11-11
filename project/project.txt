@@ -49,6 +49,14 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
 4. choose one rule
 	
 
+### Use Cases
+- single unit of meaningful work
+- high-level view of behavior observable to someone or something outside the system
+- Use-case description
+  - Name
+  - Small (abstract) textual description
+  - List of Stakeholders (actors), Requirements, Constraints, Formal description of flow of events
+  - Collection of User-Stories
 		
 
 
@@ -56,8 +64,6 @@ This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/pla
   - Very concrete example of the problem to solve (assume the development project already exists)
   - Very short (less than half a page)
   - Write down as: Title, Pre condition, Action (<3 sentences), Post condition
-  
-  - meaningful: #beans, ending field
 
   - classes: turn, hole(par.: amount - num. of beans, position - which slot), player
 
@@ -141,6 +147,9 @@ User story 16
 Precondition: Player has clicked 'start new game' button and sees pop-up box with option to insert player names
 Action: Player inserts 'Alice' as first player and 'Bob' as second player and presses 'Okey'
 Postcondition: The program shows the board with filled pits and player names and it's Alices' turn.
+
+
+
 
 ### Object diagrams
 -> for 20 of those user stories, marked with >
