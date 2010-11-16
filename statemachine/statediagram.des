@@ -1,0 +1,90 @@
+STATECHART:
+    top [DS]
+        A [DS]
+            Time [CS] [DS]
+                Time [DS]
+            Indiglo [CS] [DS]
+                Off [DS]
+                On
+                TurningOff
+            Mode [CS] [DS]
+                Time [DS]
+                Chrono
+            Chrono [CS] [DS]
+                Chrono
+                test [DS]
+
+ENTER:
+   N: top.A.Indiglo.Off
+   O: gui.unsetIndiglo()
+
+ENTER:
+   N: top.A.Chrono.Chrono
+   O: gui.increaseChronoByOne()
+
+ENTER:
+   N: top.A.Time.Time
+   O: gui.increaseTimeByOne()
+
+ENTER:
+   N: top.A.Indiglo.On
+   O: gui.setIndiglo()
+
+ENTER:
+   N: top.A.Mode.Time
+   O: gui.refreshTimeDisplay()
+
+ENTER:
+   N: top.A.Mode.Chrono
+   O: gui.refreshChronoDisplay()
+
+TRANSITION:
+    S: top.A.Time.Time
+    N: top.A.Time.Time
+    T: 1
+
+TRANSITION:
+    S: top.A.Indiglo.Off
+    N: top.A.Indiglo.On
+    E: topRightPressed
+    C: A.Mode in Chrono
+
+TRANSITION:
+    S: top.A.Indiglo.On
+    N: top.A.Indiglo.TurningOff
+    E: topRightReleased
+
+TRANSITION:
+    S: top.A.Indiglo.TurningOff
+    N: top.A.Indiglo.Off
+    T: 2
+
+TRANSITION:
+    S: top.A.Mode.Time
+    N: top.A.Mode.Chrono
+    E: topLeftReleased
+
+TRANSITION:
+    S: top.A.Mode.Chrono
+    N: top.A.Mode.Time
+    E: topLeftReleased
+
+TRANSITION:
+    S: top.A.Mode.Time
+    N: top.A.Mode.Time
+    T: 1
+
+TRANSITION:
+    S: top.A.Mode.Chrono
+    N: top.A.Mode.Chrono
+    T: 0.25
+
+TRANSITION:
+    S: top.A.Chrono.Chrono
+    N: top.A.Chrono.Chrono
+    T: 1
+
+TRANSITION:
+    S: top.A.Chrono.test
+    N: top.A.Chrono.Chrono
+    E: bottomRightReleased
