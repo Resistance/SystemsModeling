@@ -3,8 +3,8 @@ STATECHART:
         watch [DS]
             test [CS] [DS]
                 A [DS]
-                    Time [CS] [DS]
-                        Time [DS]
+                    Timef [CS] [DS]
+                        running [DS]
                     Indiglo [CS] [DS]
                         Off [DS]
                         On
@@ -12,6 +12,8 @@ STATECHART:
                     Mode [CS] [DS]
                         Time [DS]
                         Chrono
+                        br_down
+                        editing
             testingtoo [CS] [DS]
                 chronog [DS]
                     CD [DS]
@@ -21,7 +23,7 @@ ENTER:
    O: gui.unsetIndiglo()
 
 ENTER:
-   N: top.watch.test.A.Time.Time
+   N: top.watch.test.A.Timef.running
    O: gui.increaseTimeByOne()
 gui.checkTime()
 
@@ -42,8 +44,8 @@ ENTER:
    O: gui.refreshChronoDisplay()
 
 TRANSITION:
-    S: top.watch.test.A.Time.Time
-    N: top.watch.test.A.Time.Time
+    S: top.watch.test.A.Timef.running
+    N: top.watch.test.A.Timef.running
     T: 1
 
 TRANSITION:
@@ -85,3 +87,24 @@ TRANSITION:
     S: top.watch.test.A.Mode
     N: top.watch.testingtoo.chronog
     E: topLeftReleased
+
+TRANSITION:
+    S: top.watch.test.A.Mode.Time
+    N: top.watch.test.A.Mode.br_down
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.watch.test.A.Mode.br_down
+    N: top.watch.test.A.Mode.Time
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.watch.test.A.Mode.br_down
+    N: top.watch.test.A.Mode.editing
+    T: 1.5
+
+TRANSITION:
+    S: top.watch.test.A.Mode.editing
+    N: top.watch.test.A.Mode.editing
+    E: bottomRightPressed
+    O: 
