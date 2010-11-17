@@ -102,11 +102,6 @@ TRANSITION:
     T: 0.1
 
 TRANSITION:
-    S: top.Watch.Time.running
-    N: top.Watch.Time.br_pressed
-    E: bottomRightPressed
-
-TRANSITION:
     S: top.Watch.Time.br_pressed
     N: top.Watch.Time.editing
     T: 1.5
@@ -199,4 +194,4 @@ TRANSITION:
     S: top.Watch.Chrono.waiting
     N: top.Watch.Chrono.running
     E: bottomRightPressed
-    C: [INSTATE("Watch.ChronoMode", 1)]
+    C: [INSTATE("top.Watch.Mode.ChronoMode", 1)]
