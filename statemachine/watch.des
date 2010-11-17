@@ -1,90 +1,202 @@
 STATECHART:
     top [DS]
-        A [DS]
+        Watch [DS]
             Time [CS] [DS]
-                Time [DS]
+                running [DS]
+                editing
+                br_pressed
             Indiglo [CS] [DS]
-                Off [DS]
-                On
-                TurningOff
+                standard [DS]
+                    On
+                    Off [DS]
+                    afterglow
+                alarm
+                    off
+                    on [DS]
             Mode [CS] [DS]
-                Time [DS]
-                Chrono
+                TimeMode [DS]
+                ChronoMode
+                EditTime
+                br_down
+                EditAlarm
+                bl_down
             Chrono [CS] [DS]
-                counting
-                test [DS]
+                waiting [DS]
+                running
 
 ENTER:
-   N: top.A.Indiglo.Off
+   N: top.Watch.Indiglo.standard.Off
    O: gui.unsetIndiglo()
 
 ENTER:
-   N: top.A.Chrono.counting
-   O: gui.increaseChronoByOne()
+   N: top.Watch.Indiglo.alarm.off
+   O: gui.unsetIndiglo()
 
 ENTER:
-   N: top.A.Time.Time
+   N: top.Watch.Time.running
    O: gui.increaseTimeByOne()
+gui.checkTime()
 
 ENTER:
-   N: top.A.Indiglo.On
-   O: gui.setIndiglo()
+   N: top.Watch.Mode.bl_down
+   O: setAlarm()
 
 ENTER:
-   N: top.A.Mode.Time
+   N: top.Watch.Mode.TimeMode
    O: gui.refreshTimeDisplay()
 
 ENTER:
-   N: top.A.Mode.Chrono
+   N: top.Watch.Indiglo.standard.On
+   O: gui.setIndiglo()
+
+ENTER:
+   N: top.Watch.Chrono.running
+   O: gui.increaseChronoByOne()
+
+ENTER:
+   N: top.Watch.Indiglo.alarm.on
+   O: gui.setIndiglo()
+
+ENTER:
+   N: top.Watch.Mode.ChronoMode
    O: gui.refreshChronoDisplay()
 
 TRANSITION:
-    S: top.A.Time.Time
-    N: top.A.Time.Time
+    S: top.Watch.Time.running
+    N: top.Watch.Time.running
     T: 1
 
 TRANSITION:
-    S: top.A.Indiglo.Off
-    N: top.A.Indiglo.On
+    S: top.Watch.Indiglo.standard.Off
+    N: top.Watch.Indiglo.standard.On
     E: topRightPressed
-    C: A.Mode in Chrono
 
 TRANSITION:
-    S: top.A.Indiglo.On
-    N: top.A.Indiglo.TurningOff
+    S: top.Watch.Indiglo.standard.On
+    N: top.Watch.Indiglo.standard.afterglow
     E: topRightReleased
 
 TRANSITION:
-    S: top.A.Indiglo.TurningOff
-    N: top.A.Indiglo.Off
+    S: top.Watch.Indiglo.standard.afterglow
+    N: top.Watch.Indiglo.standard.Off
     T: 2
 
 TRANSITION:
-    S: top.A.Mode.Time
-    N: top.A.Mode.Chrono
+    S: top.Watch.Mode.TimeMode
+    N: top.Watch.Mode.ChronoMode
     E: topLeftReleased
 
 TRANSITION:
-    S: top.A.Mode.Chrono
-    N: top.A.Mode.Time
+    S: top.Watch.Mode.ChronoMode
+    N: top.Watch.Mode.TimeMode
     E: topLeftReleased
 
 TRANSITION:
-    S: top.A.Mode.Time
-    N: top.A.Mode.Time
+    S: top.Watch.Mode.TimeMode
+    N: top.Watch.Mode.TimeMode
     T: 1
 
 TRANSITION:
-    S: top.A.Mode.Chrono
-    N: top.A.Mode.Chrono
-    T: 0.25
+    S: top.Watch.Mode.ChronoMode
+    N: top.Watch.Mode.ChronoMode
+    T: 0.1
 
 TRANSITION:
-    S: top.A.Chrono.counting
-    N: top.A.Chrono.counting
-    T: 0.25
+    S: top.Watch.Time.running
+    N: top.Watch.Time.br_pressed
+    E: bottomRightPressed
 
 TRANSITION:
-    S: top.A.Chrono.test
-    N: top.A.Chrono.counting
+    S: top.Watch.Time.br_pressed
+    N: top.Watch.Time.editing
+    T: 1.5
+
+TRANSITION:
+    S: top.Watch.Time.br_pressed
+    N: top.Watch.Time.running
     E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Time.editing
+    N: top.Watch.Time.running
+    T: 5
+
+TRANSITION:
+    S: top.Watch.Time.editing
+    N: top.Watch.Time.editing
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Indiglo.alarm
+    N: top.Watch.Indiglo.standard
+    T: 4
+
+TRANSITION:
+    S: top.Watch.Indiglo.standard
+    N: top.Watch.Indiglo.alarm
+    E: alarmStart
+
+TRANSITION:
+    S: top.Watch.Indiglo.alarm.on
+    N: top.Watch.Indiglo.alarm.off
+    T: 0.5
+
+TRANSITION:
+    S: top.Watch.Indiglo.alarm.off
+    N: top.Watch.Indiglo.alarm.on
+    T: 0.5
+
+TRANSITION:
+    S: top.Watch.Mode.TimeMode
+    N: top.Watch.Mode.br_down
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.Watch.Mode.br_down
+    N: top.Watch.Mode.TimeMode
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Mode.br_down
+    N: top.Watch.Mode.EditTime
+    T: 1.5
+
+TRANSITION:
+    S: top.Watch.Mode.TimeMode
+    N: top.Watch.Mode.bl_down
+    E: bottomLeftPressed
+
+TRANSITION:
+    S: top.Watch.Mode.bl_down
+    N: top.Watch.Mode.EditAlarm
+    T: 1.5
+
+TRANSITION:
+    S: top.Watch.Mode.bl_down
+    N: top.Watch.Mode.TimeMode
+    E: bottomLeftReleased
+
+TRANSITION:
+    S: top.Watch.Chrono.running
+    N: top.Watch.Chrono.waiting
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.Watch.Chrono.running
+    N: top.Watch.Chrono.running
+    T: 0.1
+
+TRANSITION:
+    S: top.Watch.Indiglo.standard.afterglow
+    N: top.Watch.Indiglo.standard.On
+    E: topRightPressed
+
+TRANSITION:
+    S: top.Watch.Mode.EditTime
+    N: top.Watch.Mode.TimeMode
+
+TRANSITION:
+    S: top.Watch.Chrono.waiting
+    N: top.Watch.Chrono.running
+    E: bottomRightPressed
+    C: [INSTATE("Watch.ChronoMode", 1)]

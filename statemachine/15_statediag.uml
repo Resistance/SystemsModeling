@@ -49,7 +49,7 @@
   </argo>
 <profile>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 17 23:53:48 EET 2010'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 17 23:55:42 EET 2010'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.30.1(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -493,7 +493,7 @@
           name = '' isSpecification = 'false'>
           <UML:TimeEvent.when>
             <UML:TimeExpression xmi.id = '127-0-1-1--52dc072b:12c565cb790:-8000:0000000000001414'
-              language = '' body = '0.25'/>
+              language = '' body = '0.'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
         <UML:CallEvent xmi.id = '127-0-1-1--52dc072b:12c565cb790:-8000:0000000000001417'
