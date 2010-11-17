@@ -1,110 +1,90 @@
 STATECHART:
     top [DS]
-        watch [DS]
-            test [CS] [DS]
-                A [DS]
-                    Timef [CS] [DS]
-                        running [DS]
-                    Indiglo [CS] [DS]
-                        Off [DS]
-                        On
-                        TurningOff
-                    Mode [CS] [DS]
-                        Time [DS]
-                        Chrono
-                        br_down
-                        editing
-            testingtoo [CS] [DS]
-                chronog [DS]
-                    CD [DS]
+        A [DS]
+            Time [CS] [DS]
+                Time [DS]
+            Indiglo [CS] [DS]
+                Off [DS]
+                On
+                TurningOff
+            Mode [CS] [DS]
+                Time [DS]
+                Chrono
+            Chrono [CS] [DS]
+                counting
+                test [DS]
 
 ENTER:
-   N: top.watch.test.A.Indiglo.Off
+   N: top.A.Indiglo.Off
    O: gui.unsetIndiglo()
 
 ENTER:
-   N: top.watch.test.A.Timef.running
+   N: top.A.Chrono.counting
+   O: gui.increaseChronoByOne()
+
+ENTER:
+   N: top.A.Time.Time
    O: gui.increaseTimeByOne()
-gui.checkTime()
 
 ENTER:
-   N: top.watch.testingtoo.chronog.CD
-   O: gui.refreshChronoDisplay()
-
-ENTER:
-   N: top.watch.test.A.Indiglo.On
+   N: top.A.Indiglo.On
    O: gui.setIndiglo()
 
 ENTER:
-   N: top.watch.test.A.Mode.Time
+   N: top.A.Mode.Time
    O: gui.refreshTimeDisplay()
 
 ENTER:
-   N: top.watch.test.A.Mode.Chrono
+   N: top.A.Mode.Chrono
    O: gui.refreshChronoDisplay()
 
 TRANSITION:
-    S: top.watch.test.A.Timef.running
-    N: top.watch.test.A.Timef.running
+    S: top.A.Time.Time
+    N: top.A.Time.Time
     T: 1
 
 TRANSITION:
-    S: top.watch.test.A.Indiglo.Off
-    N: top.watch.test.A.Indiglo.On
+    S: top.A.Indiglo.Off
+    N: top.A.Indiglo.On
     E: topRightPressed
+    C: A.Mode in Chrono
 
 TRANSITION:
-    S: top.watch.test.A.Indiglo.On
-    N: top.watch.test.A.Indiglo.TurningOff
+    S: top.A.Indiglo.On
+    N: top.A.Indiglo.TurningOff
     E: topRightReleased
 
 TRANSITION:
-    S: top.watch.test.A.Indiglo.TurningOff
-    N: top.watch.test.A.Indiglo.Off
+    S: top.A.Indiglo.TurningOff
+    N: top.A.Indiglo.Off
     T: 2
 
 TRANSITION:
-    S: top.watch.test.A.Mode.Chrono
-    N: top.watch.test.A.Mode.Time
+    S: top.A.Mode.Time
+    N: top.A.Mode.Chrono
     E: topLeftReleased
 
 TRANSITION:
-    S: top.watch.test.A.Mode.Time
-    N: top.watch.test.A.Mode.Time
+    S: top.A.Mode.Chrono
+    N: top.A.Mode.Time
+    E: topLeftReleased
+
+TRANSITION:
+    S: top.A.Mode.Time
+    N: top.A.Mode.Time
     T: 1
 
 TRANSITION:
-    S: top.watch.test.A.Mode.Chrono
-    N: top.watch.test.A.Mode.Chrono
+    S: top.A.Mode.Chrono
+    N: top.A.Mode.Chrono
     T: 0.25
 
 TRANSITION:
-    S: top.watch.test.A.Indiglo.TurningOff
-    N: top.watch.test.A.Indiglo.On
-    E: topRightPressed
+    S: top.A.Chrono.counting
+    N: top.A.Chrono.counting
+    T: 0.25
 
 TRANSITION:
-    S: top.watch.test.A.Mode
-    N: top.watch.testingtoo.chronog
-    E: topLeftReleased
-
-TRANSITION:
-    S: top.watch.test.A.Mode.Time
-    N: top.watch.test.A.Mode.br_down
-    E: bottomRightPressed
-
-TRANSITION:
-    S: top.watch.test.A.Mode.br_down
-    N: top.watch.test.A.Mode.Time
+    S: top.A.Chrono.test
+    N: top.A.Chrono.counting
     E: bottomRightReleased
-
-TRANSITION:
-    S: top.watch.test.A.Mode.br_down
-    N: top.watch.test.A.Mode.editing
-    T: 1.5
-
-TRANSITION:
-    S: top.watch.test.A.Mode.editing
-    N: top.watch.test.A.Mode.editing
-    E: bottomRightPressed
-    O: 

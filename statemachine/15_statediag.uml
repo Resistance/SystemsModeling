@@ -49,7 +49,7 @@
   </argo>
 <profile>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 17 00:48:53 EET 2010'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 17 23:53:48 EET 2010'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.30.1(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -227,7 +227,7 @@
                       name = 'Chrono' isSpecification = 'false' isConcurrent = 'false'>
                       <UML:CompositeState.subvertex>
                         <UML:SimpleState xmi.id = '127-0-1-1--52dc072b:12c565cb790:-8000:000000000000140A'
-                          name = 'Chrono' isSpecification = 'false'>
+                          name = 'counting' isSpecification = 'false'>
                           <UML:StateVertex.outgoing>
                             <UML:Transition xmi.idref = '127-0-1-1--52dc072b:12c565cb790:-8000:0000000000001412'/>
                           </UML:StateVertex.outgoing>
@@ -493,7 +493,7 @@
           name = '' isSpecification = 'false'>
           <UML:TimeEvent.when>
             <UML:TimeExpression xmi.id = '127-0-1-1--52dc072b:12c565cb790:-8000:0000000000001414'
-              language = '' body = '1'/>
+              language = '' body = '0.25'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
         <UML:CallEvent xmi.id = '127-0-1-1--52dc072b:12c565cb790:-8000:0000000000001417'
@@ -652,7 +652,7 @@
     />
     <text name="Fig1.2"
       x="93"
-      y="126"
+      y="124"
       width="678"
       height="23"
       fill="0"
@@ -680,9 +680,9 @@
     </path>
     <text name="Fig1.4"
       x="93"
-      y="151"
+      y="147"
       width="678"
-      height="105"
+      height="107"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -841,7 +841,7 @@ gui.checkTime()</text>
     />
     <text name="Fig4.2"
       x="93"
-      y="266"
+      y="264"
       width="678"
       height="23"
       fill="0"
@@ -869,9 +869,9 @@ gui.checkTime()</text>
     </path>
     <text name="Fig4.4"
       x="93"
-      y="291"
+      y="287"
       width="678"
-      height="273"
+      height="275"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1313,7 +1313,7 @@ gui.checkTime()</text>
     />
     <text name="Fig13.2"
       x="93"
-      y="574"
+      y="572"
       width="678"
       height="23"
       fill="0"
@@ -1341,9 +1341,9 @@ gui.checkTime()</text>
     </path>
     <text name="Fig13.4"
       x="93"
-      y="599"
+      y="595"
       width="678"
-      height="317"
+      height="319"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1741,7 +1741,7 @@ gui.checkTime()</text>
     />
     <text name="Fig22.2"
       x="93"
-      y="926"
+      y="924"
       width="678"
       height="23"
       fill="0"
@@ -1769,9 +1769,9 @@ gui.checkTime()</text>
     </path>
     <text name="Fig22.4"
       x="93"
-      y="951"
+      y="947"
       width="678"
-      height="192"
+      height="194"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1785,7 +1785,7 @@ gui.checkTime()</text>
     ></text>
   </group>
   <group name="Fig23"
-       description="org.argouml.uml.diagram.state.ui.FigSimpleState[480, 1000, 209, 44]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.state.ui.FigSimpleState[480, 1000, 215, 44]pathVisible=false;stereotypeView=0;"
        href="127-0-1-1--52dc072b:12c565cb790:-8000:000000000000140A"
        fill="1"
        fillcolor="white"
@@ -1799,7 +1799,7 @@ gui.checkTime()</text>
     <rectangle name="Fig23.0"
       x="480"
       y="1000"
-      width="209"
+      width="215"
       height="44"
       fill="1"
       fillcolor="255 0 255"
@@ -1810,7 +1810,7 @@ gui.checkTime()</text>
     <rectangle name="Fig23.1"
       x="480"
       y="1000"
-      width="209"
+      width="215"
       height="44"
       fill="1"
       fillcolor="white"
@@ -1821,7 +1821,7 @@ gui.checkTime()</text>
     <text name="Fig23.2"
       x="482"
       y="1000"
-      width="205"
+      width="211"
       height="23"
       fill="0"
       fillcolor="white"
@@ -1833,7 +1833,7 @@ gui.checkTime()</text>
       bold="false"
       textsize="12"
       justification="Center"
-    >Chrono</text>
+    >counting</text>
     <path name="Fig23.3"
       description="org.tigris.gef.presentation.FigLine"
       fill="1"
@@ -1843,13 +1843,13 @@ gui.checkTime()</text>
     >
       <moveto x="480"
               y="1023" />
-      <lineto x="688"
+      <lineto x="694"
               y="1023" />
     </path>
     <text name="Fig23.4"
       x="482"
       y="1023"
-      width="205"
+      width="211"
       height="15"
       fill="0"
       fillcolor="white"
@@ -2029,7 +2029,7 @@ gui.checkTime()</text>
                         offset="10" />
     </private>
     <path name="Fig27.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -2060,7 +2060,7 @@ gui.checkTime()</text>
                         offset="10" />
     </private>
     <path name="Fig28.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
