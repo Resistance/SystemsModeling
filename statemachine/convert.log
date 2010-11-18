@@ -1,0 +1,16 @@
+INFO:root:Started converting file: statediagram.xmi
+WARNING:root:UML:FinalState id=127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AC8 has no name
+WARNING:root:UML:FinalState id=127-0-1-1--3a616a90:12c5535072f:-8000:0000000000001B00 has no name
+INFO:root: # Sanity Checks
+WARNING:root:Transition top.Watch.Mode.EditTime->top.Watch.Mode.TimeMode will be implicitly set time event 0
+ERROR:root:Transition failed sanity check:
+-----
+Event or Time mandatory.
+TRANSITION:
+  S: top.Watch.Mode.EditTime
+  N: top.Watch.Mode.TimeMode
+  T: 0
+
+
+WARNING:root:Transition top.Watch.Mode.EditTime->top.Watch.Mode.TimeMode will be implicitly set time event 0
+WARNING:root:Transition top.Watch.Mode.EditTime->top.Watch.Mode.TimeMode will be implicitly set time event 0
