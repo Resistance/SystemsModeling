@@ -17,6 +17,8 @@ STATECHART:
                 TimeMode [DS]
                 ChronoMode
                 EditTime
+                    increase [DS]
+                    next
                 br_down
                 EditAlarm
                 bl_down
@@ -25,6 +27,14 @@ STATECHART:
                 chronoInTime
                     paused
                     takingTime [DS]
+
+ENTER:
+   N: top.Watch.Mode.EditTime.increase
+   O: gui.startSelection()
+
+ENTER:
+   N: top.Watch.Mode.EditTime.next
+   O: gui.selectNext()
 
 ENTER:
    N: top.Watch.Indiglo.standard.On
@@ -53,7 +63,7 @@ gui.checkTime()
 
 ENTER:
    N: top.Watch.Mode.bl_down
-   O: setAlarm()
+   O: gui.setAlarm()
 
 ENTER:
    N: top.Watch.Mode.TimeMode
@@ -156,11 +166,13 @@ TRANSITION:
     S: top.Watch.Mode.br_down
     N: top.Watch.Mode.EditTime
     T: 1.5
+    O: 
 
 TRANSITION:
     S: top.Watch.Mode.TimeMode
     N: top.Watch.Mode.bl_down
     E: bottomLeftPressed
+    C: [INSTATE("top.Watch.Mode.TimeMode")]
 
 TRANSITION:
     S: top.Watch.Mode.bl_down
@@ -182,10 +194,6 @@ TRANSITION:
     S: top.Watch.Indiglo.standard.afterglow
     N: top.Watch.Indiglo.standard.On
     E: topRightPressed
-
-TRANSITION:
-    S: top.Watch.Mode.EditTime
-    N: top.Watch.Mode.TimeMode
 
 TRANSITION:
     S: top.Watch.Chrono.chronoInTime.takingTime
@@ -214,3 +222,55 @@ TRANSITION:
     S: top.Watch.Chrono.chronoInTime.takingTime
     N: top.Watch.Chrono.chronoInTime.takingTime
     T: 0.1
+
+TRANSITION:
+    S: top.Watch.Time.ticking
+    N: top.Watch.Time.br_pressed
+    E: bottomRightPressed
+    C: [INSTATE("top.Watch.Time.ticking")]
+
+TRANSITION:
+    S: top.Watch.Indiglo.alarm
+    N: top.Watch.Indiglo.standard
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.Watch.Indiglo.alarm
+    N: top.Watch.Indiglo.standard
+    E: bottomLeftPressed
+
+TRANSITION:
+    S: top.Watch.Indiglo.alarm
+    N: top.Watch.Indiglo.standard
+    E: topLeftPressed
+
+TRANSITION:
+    S: top.Watch.Indiglo.alarm
+    N: top.Watch.Indiglo.standard
+    E: topRightPressed
+
+TRANSITION:
+    S: top.Watch.Mode.EditTime.increase
+    N: top.Watch.Mode.EditTime.increase
+    E: bottomLeftPressed
+    O: gui.increaseSelection()
+
+TRANSITION:
+    S: top.Watch.Mode.EditTime.increase
+    N: top.Watch.Mode.EditTime.next
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.Watch.Mode.EditTime.next
+    N: top.Watch.Mode.EditTime.increase
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Mode.EditTime.increase
+    N: top.Watch.Mode.TimeMode
+    T: 5
+    O: gui.stopSelection()
+
+TRANSITION:
+    S: top.Watch.Mode.EditTime.next
+    N: top.Watch.Mode.EditTime
