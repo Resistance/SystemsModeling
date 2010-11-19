@@ -31,25 +31,25 @@
     <searchpath href="PROJECT_DIR" />
     <members>
       <member type="profile"
-              name="10_statediag_profile.profile" />
+              name="11_statediag_profile.profile" />
       <member type="xmi"
-              name="10_statediag.xmi" />
+              name="11_statediag.xmi" />
       <member type="pgml"
-              name="10_statediag_ClassDiagram.pgml"
+              name="11_statediag_ClassDiagram.pgml"
               diagramclass="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram"
               diagramname="Class Diagram" />
       <member type="pgml"
-              name="10_statediag_untitledProfile0.pgml"
+              name="11_statediag_untitledProfile0.pgml"
               diagramclass="org.argouml.uml.diagram.state.ui.UMLStateDiagram"
               diagramname="untitledProfile 0" />
       <member type="todo"
-              name="10_statediag.todo" />
+              name="11_statediag.todo" />
     </members>
     <historyfile name="" />
   </argo>
 <profile>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 19 23:29:43 EET 2010'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 19 23:31:02 EET 2010'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.30.1(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
