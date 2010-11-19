@@ -49,7 +49,7 @@
   </argo>
 <profile>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 19 20:38:16 EET 2010'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 19 22:59:45 EET 2010'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.30.1(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -321,8 +321,8 @@
                             <UML:CallAction xmi.id = '127-0-1-1--738a3aff:12c5fe62b26:-8000:00000000000010FE'
                               name = 'anon' isSpecification = 'false' isAsynchronous = 'false'>
                               <UML:Action.script>
-                                <UML:ActionExpression xmi.id = '127-0-1-1-7326bc18:12c64f85fbf:-8000:0000000000000BD0'
-                                  language = 'Java' body = '[EVENT(&quot;editing&quot;)]; gui.startSelection()'/>
+                                <UML:ActionExpression xmi.id = '127-0-1-1-65fabb66:12c65e6ddb6:-8000:0000000000000B6F'
+                                  language = 'Java' body = 'gui.startSelection()'/>
                               </UML:Action.script>
                             </UML:CallAction>
                           </UML:State.entry>
@@ -732,15 +732,15 @@
               isSpecification = 'false'>
               <UML:Transition.effect>
                 <UML:CallAction xmi.id = '127-0-1-1-7133d3ab:12c5fbaa7ca:-8000:00000000000010C7'
-                  name = 'named1' isSpecification = 'false' isAsynchronous = 'false'>
+                  name = 'anon' isSpecification = 'false' isAsynchronous = 'false'>
                   <UML:Action.script>
-                    <UML:ActionExpression xmi.id = '127-0-1-1-7133d3ab:12c5fbaa7ca:-8000:00000000000010DB'
-                      language = 'gui.startSelection()' body = ''/>
+                    <UML:ActionExpression xmi.id = '127-0-1-1-65fabb66:12c65e6ddb6:-8000:0000000000000B78'
+                      language = 'Java' body = '[EVENT(&quot;editing&quot;)]'/>
                   </UML:Action.script>
                 </UML:CallAction>
               </UML:Transition.effect>
               <UML:Transition.trigger>
-                <UML:TimeEvent xmi.idref = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AC6'/>
+                <UML:TimeEvent xmi.idref = '127-0-1-1-65fabb66:12c65e6ddb6:-8000:0000000000000B71'/>
               </UML:Transition.trigger>
               <UML:Transition.source>
                 <UML:SimpleState xmi.idref = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AC0'/>
@@ -1207,13 +1207,6 @@
           name = 'bottomRightPressed' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AC4'
           name = 'bottomRightReleased' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AC6'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AC7'
-              language = '' body = '1.5'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000ACC'
           name = 'bottomLeftPressed' isSpecification = 'false'/>
         <UML:TimeEvent xmi.id = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000ACE'
@@ -1356,6 +1349,13 @@
           name = 'bottomLeftReleased' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '127-0-1-1-7326bc18:12c64f85fbf:-8000:0000000000000F2C'
           name = 'bottomLeftReleased' isSpecification = 'false'/>
+        <UML:TimeEvent xmi.id = '127-0-1-1-65fabb66:12c65e6ddb6:-8000:0000000000000B71'
+          name = '' isSpecification = 'false'>
+          <UML:TimeEvent.when>
+            <UML:TimeExpression xmi.id = '127-0-1-1-65fabb66:12c65e6ddb6:-8000:0000000000000B72'
+              language = '' body = '1.5'/>
+          </UML:TimeEvent.when>
+        </UML:TimeEvent>
       </UML:Namespace.ownedElement>
     </UML:Model>
     <UML:BooleanExpression xmi.id = '127-0-1-1-7133d3ab:12c5fbaa7ca:-8000:0000000000001157'
@@ -1414,6 +1414,8 @@
       language = '' body = '[INSTATE(&quot;top.Watch.ChronoMode&quot;, 1)]'/>
     <UML:BooleanExpression xmi.id = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000002AA7'
       language = '' body = '[INSTATE(&quot;top.Watch.Mode.ChronoMode&quot;,1)]'/>
+    <UML:ActionExpression xmi.id = '127-0-1-1-7326bc18:12c64f85fbf:-8000:0000000000000BD0'
+      language = 'Java' body = '[EVENT(&quot;editing&quot;)]; gui.startSelection()'/>
     <UML:ActionExpression xmi.id = '127-0-1-1--738a3aff:12c5fe62b26:-8000:0000000000001733'
       language = 'Java' body = '[EVENT(&quot;editing&quot;)]&#10;gui.startSelection()'/>
     <UML:ActionExpression xmi.id = '127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AD4'
@@ -3451,7 +3453,7 @@ gui.checkTime()</text>
       bold="false"
       textsize="12"
       justification="Left"
-    >entry /[EVENT(&quot;editing&quot;)]; gui.startSelection()
+    >entry /gui.startSelection()
 exit /[EVENT(&quot;running&quot;)]; gui.stopSelection()</text>
   </group>
   <group name="Fig37"
@@ -3610,8 +3612,8 @@ exit /[EVENT(&quot;running&quot;)]; gui.stopSelection()</text>
                         classname="org.argouml.uml.diagram.ui.PathItemPlacement"
                         figclassname="org.argouml.uml.diagram.ui.FigNameWithAbstract"
                         ownerhref="127-0-1-1--3a616a90:12c5535072f:-8000:0000000000000AC5"
-                        angle="270.0"
-                        offset="10" />
+                        angle="-89.0"
+                        offset="61" />
     </private>
     <path name="Fig40.0"
       description="org.argouml.gefext.ArgoFigPoly"
@@ -5385,7 +5387,7 @@ exit /[EVENT(&quot;running&quot;)]; gui.stopSelection()</text>
                         offset="41" />
     </private>
     <path name="Fig81.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"

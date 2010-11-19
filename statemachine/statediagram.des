@@ -39,7 +39,7 @@ STATECHART:
 
 ENTER:
   N: top.Watch.Mode.EditTime
-  O: [EVENT("editing")]; gui.startSelection()
+  O: gui.startSelection()
 
 EXIT:
   S: top.Watch.Mode.EditTime
@@ -170,6 +170,7 @@ TRANSITION:
   S: top.Watch.Mode.br_down
   N: top.Watch.Mode.EditTime
   T: 1.5
+  O: [EVENT("editing")]
 
 TRANSITION:
   S: top.Watch.Indiglo.alarm
