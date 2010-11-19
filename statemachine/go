@@ -1,0 +1,8 @@
+#! /bin/bash
+
+XMI2SVM=xmi2svm2.jar
+XMI2SVMPY=xmi2svm/xmi2svm.py
+SVM=~/svm-0.3beta3-src/svm
+
+#java -jar "${XMI2SVM}" "$1" > statediagram.des && "${SVM}" -i Header.des statediagram.des
+python "${XMI2SVMPY}" "$1" > statediagram.des && "${SVM}" -i Header.des statediagram.des
