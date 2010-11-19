@@ -28,10 +28,10 @@ STATECHART:
                   active [DS]
               ChronoMode
               TimeMode [DS]
+              AM
+                  alarm
+                  bl_down
               br_down
-              EditAlarm
-                  Unknown_0 [DS] [FS]
-              bl_down
 
 ##################
 # Actions
@@ -63,6 +63,10 @@ ENTER:
   O: gui.refreshChronoDisplay()
 
 ENTER:
+  N: top.Watch.Mode.AM.alarm
+  O: gui.setAlarm()
+
+ENTER:
   N: top.Watch.Indiglo.standard.Off
   O: gui.unsetIndiglo()
 
@@ -71,12 +75,12 @@ ENTER:
   O: gui.refreshTimeDisplay()
 
 ENTER:
-  N: top.Watch.Indiglo.alarm.on
-  O: gui.setIndiglo()
+  N: top.Watch.Mode.AM
+  O: gui.refreshAlarmDisplay()
 
 ENTER:
-  N: top.Watch.Mode.bl_down
-  O: gui.setAlarm()
+  N: top.Watch.Indiglo.alarm.on
+  O: gui.setIndiglo()
 
 ENTER:
   N: top.Watch.Indiglo.standard.On
@@ -96,9 +100,9 @@ ENTER:
 ##################
 
 TRANSITION:
-  S: top.Watch.Mode.bl_down
+  S: top.Watch.Mode.AM
   N: top.Watch.Mode.TimeMode
-  E: bottomLeftReleased
+  E: bottomLeftPressed
 
 TRANSITION:
   S: top.Watch.Indiglo.alarm
@@ -114,6 +118,11 @@ TRANSITION:
   S: top.Watch.Mode.ChronoMode
   N: top.Watch.Mode.TimeMode
   E: topLeftPressed
+
+TRANSITION:
+  S: top.Watch.Mode.AM.bl_down
+  N: top.Watch.Mode.AM.alarm
+  E: bottomLeftReleased
 
 TRANSITION:
   S: top.Watch.Mode.EditTime.next
@@ -193,14 +202,14 @@ TRANSITION:
   E: bottomRightReleased
 
 TRANSITION:
-  S: top.Watch.Mode.bl_down
-  N: top.Watch.Mode.EditAlarm
+  S: top.Watch.Mode.AM.bl_down
+  N: top.Watch.Mode.EditTime
   T: 1.5
+  O: gui.hideTime()
 
 TRANSITION:
   S: top.Watch.Mode.TimeMode
-  N: top.Watch.Mode.bl_down
-  C: [INSTATE("top.Watch.Mode.TimeMode")]
+  N: top.Watch.Mode.AM.bl_down
   E: bottomLeftPressed
 
 TRANSITION:
