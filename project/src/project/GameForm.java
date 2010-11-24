@@ -1,5 +1,8 @@
+package project;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,21 +18,36 @@ public class GameForm {
   private JButton a1;
   private JButton b5;
   private JButton a2;
-  private JButton button4;
-  private JButton button8;
+  private JButton a3;
+  private JButton a4;
   private JButton b2;
-  private JButton button10;
+  private JButton a5;
   private JButton b1;
-  private JButton button12;
+  private JButton a6;
   private JButton b6;
   private JLabel status;
-    private JButton a0Button;
-    private JButton a0Button2;
+  private JButton a0;
+  private JButton b0;
+  private Mancala mancala = new Mancala();
+  private Player player1 = new Player();
+  private Player player2 = new Player();
+  private NewGameAction newGameAction = new NewGameAction("New Game", mancala);
 
-    public GameForm() {
+  public GameForm() {
+    newGameAction.setPlayers(Arrays.asList(player1, player2));
+    Map<Player, JButton> storages = new HashMap<Player, JButton>();
+    storages.put(player1, a0);
+    storages.put(player2, b0);
+    newGameAction.setStorages(storages);
+    Map<Player, Iterable<JButton>> pits = new HashMap<Player, Iterable<JButton>>();
+    pits.put(player1, Arrays.asList(a1, a2, a3, a4, a5, a6));
+    pits.put(player2, Arrays.asList(b1, b2, b3, b4, b5, b6));
+    newGameAction.setPits(pits);
     menuBar = new JMenuBar();
     JMenu gameMenu = new JMenu("Game");
-    gameMenu.add(new JMenuItem("New Game"));
+    JMenuItem newGame = new JMenuItem();
+    newGame.setAction(newGameAction);
+    gameMenu.add(newGame);
     gameMenu.add(new JMenuItem("History"));
     gameMenu.addSeparator();
     gameMenu.add(new JMenuItem("Exit"));
@@ -74,6 +92,7 @@ public class GameForm {
     panel2.setLayout(new GridBagLayout());
     panel1.add(panel2, BorderLayout.CENTER);
     b4 = new JButton();
+    b4.setFont(new Font(b4.getFont().getName(), b4.getFont().getStyle(), 24));
     b4.setText("4");
     GridBagConstraints gbc;
     gbc = new GridBagConstraints();
@@ -82,6 +101,7 @@ public class GameForm {
     gbc.fill = GridBagConstraints.HORIZONTAL;
     panel2.add(b4, gbc);
     b3 = new JButton();
+    b3.setFont(new Font(b3.getFont().getName(), b3.getFont().getStyle(), 24));
     b3.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 3;
@@ -89,6 +109,7 @@ public class GameForm {
     gbc.fill = GridBagConstraints.HORIZONTAL;
     panel2.add(b3, gbc);
     a1 = new JButton();
+    a1.setFont(new Font(a1.getFont().getName(), a1.getFont().getStyle(), 24));
     a1.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 0;
@@ -96,6 +117,7 @@ public class GameForm {
     gbc.fill = GridBagConstraints.HORIZONTAL;
     panel2.add(a1, gbc);
     b5 = new JButton();
+    b5.setFont(new Font(b5.getFont().getName(), b5.getFont().getStyle(), 24));
     b5.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 1;
@@ -103,55 +125,63 @@ public class GameForm {
     gbc.fill = GridBagConstraints.HORIZONTAL;
     panel2.add(b5, gbc);
     a2 = new JButton();
+    a2.setFont(new Font(a2.getFont().getName(), a2.getFont().getStyle(), 24));
     a2.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 1;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
     panel2.add(a2, gbc);
-    button4 = new JButton();
-    button4.setText("4");
+    a3 = new JButton();
+    a3.setFont(new Font(a3.getFont().getName(), a3.getFont().getStyle(), 24));
+    a3.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 2;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(button4, gbc);
-    button8 = new JButton();
-    button8.setText("4");
+    panel2.add(a3, gbc);
+    a4 = new JButton();
+    a4.setFont(new Font(a4.getFont().getName(), a4.getFont().getStyle(), 24));
+    a4.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 3;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(button8, gbc);
+    panel2.add(a4, gbc);
     b2 = new JButton();
+    b2.setFont(new Font(b2.getFont().getName(), b2.getFont().getStyle(), 24));
     b2.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 4;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
     panel2.add(b2, gbc);
-    button10 = new JButton();
-    button10.setText("4");
+    a5 = new JButton();
+    a5.setFont(new Font(a5.getFont().getName(), a5.getFont().getStyle(), 24));
+    a5.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 4;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(button10, gbc);
+    panel2.add(a5, gbc);
     b1 = new JButton();
+    b1.setFont(new Font(b1.getFont().getName(), b1.getFont().getStyle(), 24));
     b1.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 5;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
     panel2.add(b1, gbc);
-    button12 = new JButton();
-    button12.setText("4");
+    a6 = new JButton();
+    a6.setFont(new Font(a6.getFont().getName(), a6.getFont().getStyle(), 24));
+    a6.setText("4");
     gbc = new GridBagConstraints();
     gbc.gridx = 5;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(button12, gbc);
+    panel2.add(a6, gbc);
     b6 = new JButton();
+    b6.setFont(new Font(b6.getFont().getName(), b6.getFont().getStyle(), 24));
     b6.setText("4");
     b6.putClientProperty("html.disable", Boolean.FALSE);
     b6.putClientProperty("hideActionText", Boolean.FALSE);
@@ -167,8 +197,20 @@ public class GameForm {
     panel4.setLayout(new BorderLayout(0, 0));
     panel1.add(panel4, BorderLayout.SOUTH);
     status = new JLabel();
+    status.setEnabled(true);
+    status.setFont(new Font(status.getFont().getName(), status.getFont().getStyle(), 18));
     status.setText("It is Alice's turn");
     panel4.add(status, BorderLayout.CENTER);
+    a0 = new JButton();
+    a0.setEnabled(false);
+    a0.setFont(new Font(a0.getFont().getName(), a0.getFont().getStyle(), 24));
+    a0.setText("0");
+    panel1.add(a0, BorderLayout.EAST);
+    b0 = new JButton();
+    b0.setEnabled(false);
+    b0.setFont(new Font(b0.getFont().getName(), b0.getFont().getStyle(), 24));
+    b0.setText("0");
+    panel1.add(b0, BorderLayout.WEST);
   }
 
   /**
