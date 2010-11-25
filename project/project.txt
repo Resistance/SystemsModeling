@@ -2,15 +2,13 @@ COURSE project: Mancala modeling in Fujaba
 
 This the link if you want to look: http://boardgames.about.com/cs/mancala/ht/play_mancala.htm
 
-- 5 weeks left
+- 1 week left
 
 - 30 user stories
 - 40 object diagrams
 - 15 storyboard test cases
 - class diagram
-
-- guide through your project (and repository)
-- your project plan
+                                               
 - project log
 - documentation
 
