@@ -11,7 +11,6 @@ import java.util.*;
  * Time: 18:53:26
  */
 public class GameForm {
-  private JMenuBar menuBar;
   private JPanel panel1;
   private JButton b4;
   private JButton b3;
@@ -28,47 +27,61 @@ public class GameForm {
   private JLabel status;
   private JButton a0;
   private JButton b0;
-  private Mancala mancala = new Mancala();
-  private Player player1 = new Player();
-  private Player player2 = new Player();
-  private NewGameAction newGameAction = new NewGameAction("New Game", mancala);
 
-  public GameForm() {
-    newGameAction.setPlayers(Arrays.asList(player1, player2));
-    Map<Player, JButton> storages = new HashMap<Player, JButton>();
-    storages.put(player1, a0);
-    storages.put(player2, b0);
-    newGameAction.setStorages(storages);
-    Map<Player, Iterable<JButton>> pits = new HashMap<Player, Iterable<JButton>>();
-    pits.put(player1, Arrays.asList(a1, a2, a3, a4, a5, a6));
-    pits.put(player2, Arrays.asList(b1, b2, b3, b4, b5, b6));
-    newGameAction.setPits(pits);
-    menuBar = new JMenuBar();
-    JMenu gameMenu = new JMenu("Game");
-    JMenuItem newGame = new JMenuItem();
-    newGame.setAction(newGameAction);
-    gameMenu.add(newGame);
-    gameMenu.add(new JMenuItem("History"));
-    gameMenu.addSeparator();
-    gameMenu.add(new JMenuItem("Exit"));
-    menuBar.add(gameMenu);
+  public JButton getB4() {
+    return b4;
   }
 
-  public static void main(String[] args) {
-    JFrame frame = new JFrame("Mancala");
-    GameForm form = new GameForm();
-    frame.getContentPane().add(form.$$$getRootComponent$$$());
-    frame.setJMenuBar(form.getMenuBar());
-
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setLocationRelativeTo(null);
-    frame.pack();
-    frame.setResizable(false);
-    frame.setVisible(true);
+  public JButton getB3() {
+    return b3;
   }
 
-  public JMenuBar getMenuBar() {
-    return menuBar;
+  public JButton getA1() {
+    return a1;
+  }
+
+  public JButton getB5() {
+    return b5;
+  }
+
+  public JButton getA2() {
+    return a2;
+  }
+
+  public JButton getA3() {
+    return a3;
+  }
+
+  public JButton getA4() {
+    return a4;
+  }
+
+  public JButton getB2() {
+    return b2;
+  }
+
+  public JButton getA5() {
+    return a5;
+  }
+
+  public JButton getB1() {
+    return b1;
+  }
+
+  public JButton getA6() {
+    return a6;
+  }
+
+  public JButton getB6() {
+    return b6;
+  }
+
+  public JButton getA0() {
+    return a0;
+  }
+
+  public JButton getB0() {
+    return b0;
   }
 
   {

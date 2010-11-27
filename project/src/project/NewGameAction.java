@@ -6,14 +6,16 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class NewGameAction extends AbstractAction {
-  private final Mancala mancala;
-  private Iterable<Player> players;
-  private Map<Player, JButton> storages;
-  private Map<Player, Iterable<JButton>> pits;
+  private Mancala mancala;
+  private Iterable<? extends Player> players;
 
-  public NewGameAction(String name, Mancala mancala) {
+  public NewGameAction(String name) {
     super(name);
-    this.mancala = mancala;
+  }
+
+  public NewGameAction(String name, Iterable<? extends Player> players) {
+    this(name);
+    this.players = players;
   }
 
   public void actionPerformed(ActionEvent e) {
@@ -22,31 +24,21 @@ public class NewGameAction extends AbstractAction {
       mancala.addToPlayers(player);
     }
     mancala.init();
-    for (Player player : players) {
-      ContainerListener storageListener = new ContainerListener(player.getStorage(), storages.get(player));
-      storageListener.register();
-      storageListener.update();
-      Iterator<JButton> pitButtons = pits.get(player).iterator();
-      for (Pit pit : player.getPits()) {
-        JButton pitButton = pitButtons.next();
-        pitButton.setAction(new ReseedAction(mancala, pit));
-        ContainerListener pitListener = new ContainerListener(pit, pitButton);
-        pitListener.register();
-        pitListener.update();
-      }
-    }
-    mancala.setCurrentPlayer(players.iterator().next());
   }
 
-  public void setPlayers(Iterable<Player> players) {
+  public Mancala getMancala() {
+    return mancala;
+  }
+
+  public void setMancala(Mancala mancala) {
+    this.mancala = mancala;
+  }
+
+  public Iterable<? extends Player> getPlayers() {
+    return players;
+  }
+
+  public void setPlayers(Iterable<? extends Player> players) {
     this.players = players;
-  }
-
-  public void setStorages(Map<Player, JButton> storages) {
-    this.storages = storages;
-  }
-
-  public void setPits(Map<Player, Iterable<JButton>> pits) {
-    this.pits = pits;
   }
 }

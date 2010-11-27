@@ -5,12 +5,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ContainerListener implements PropertyChangeListener {
-  private final JButton button;
-  private final Container container;
+  private SwingView view;
+  private Container container;
 
-  public ContainerListener(Container container, JButton button) {
-    this.button = button;
-    this.container = container;
+  public ContainerListener() {
   }
 
   public void register() {
@@ -22,10 +20,22 @@ public class ContainerListener implements PropertyChangeListener {
   }
 
   public void propertyChange(PropertyChangeEvent evt) {
-    update();
+    view.updateContainer(container);
   }
 
-  public void update() {
-    button.setText(String.valueOf(container.getSeeds()));
+  public SwingView getView() {
+    return view;
+  }
+
+  public void setView(SwingView view) {
+    this.view = view;
+  }
+
+  public Container getContainer() {
+    return container;
+  }
+
+  public void setContainer(Container container) {
+    this.container = container;
   }
 }
