@@ -2,26 +2,33 @@ package project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.Collection;
+import java.util.List;
 
 public class NewGameAction extends AbstractAction {
   private Mancala mancala;
-  private Iterable<? extends Player> players;
 
   public NewGameAction(String name) {
     super(name);
   }
 
-  public NewGameAction(String name, Iterable<? extends Player> players) {
-    this(name);
-    this.players = players;
-  }
-
   public void actionPerformed(ActionEvent e) {
-    mancala.removeAllFromPlayers();
-    for (Player player : players) {
-      mancala.addToPlayers(player);
+    NamesData data = new NamesData();
+    List<? extends Player> players = mancala.getPlayers();
+    if (players.size() == 2) {
+      data.setName1(players.get(0).getName());
+      data.setName2(players.get(1).getName());
     }
-    mancala.init();
+    NamesForm namesForm = new NamesForm();
+    namesForm.setData(data);
+    namesForm.setVisible(true);
+    namesForm.getData(data);
+    if (data.isOk()) {
+      mancala.removeAllFromPlayers();
+      mancala.addToPlayers(new Player().withName(data.getName1()));
+      mancala.addToPlayers(new Player().withName(data.getName2()));
+      mancala.init();
+    }
   }
 
   public Mancala getMancala() {
@@ -34,14 +41,6 @@ public class NewGameAction extends AbstractAction {
   }
 
   private void invalidate() {
-    setEnabled((mancala != null) && (players != null));
-  }
-
-  public Iterable<? extends Player> getPlayers() {
-    return players;
-  }
-
-  public void setPlayers(Iterable<? extends Player> players) {
-    this.players = players;
+    setEnabled(mancala != null);
   }
 }

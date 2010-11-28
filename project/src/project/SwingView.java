@@ -8,8 +8,7 @@ public class SwingView implements View {
   private static final int PITS_PER_PLAYER = 6;
   private Mancala mancala;
   private GameForm gameForm = new GameForm();
-  private Collection<? extends Player> players = new ArrayList<Player>(Arrays.asList(new Player[] {new Player(), new Player()}));
-  private NewGameAction newGameAction = new NewGameAction("New Game", players);
+  private NewGameAction newGameAction = new NewGameAction("New Game");
   private JFrame gameFrame = new JFrame("Mancala");
   private JMenuBar menuBar = new JMenuBar();
   private List<ReseedAction> reseedActions = new ArrayList<ReseedAction>(NUM_PLAYERS * PITS_PER_PLAYER);
