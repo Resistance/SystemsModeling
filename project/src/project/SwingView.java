@@ -56,6 +56,7 @@ public class SwingView implements View {
       throw new IllegalStateException("The game has " + playersSize + " players, but this view requires exactly " + NUM_PLAYERS);
     }
     int i = 0;
+    JLabel[] nameLabels = {gameForm.getName1(), gameForm.getName2()};
     for (Player player : players) {
       List<? extends Pit> pits = player.getPits();
       int pitsSize = pits.size();
@@ -68,9 +69,10 @@ public class SwingView implements View {
         j++;
       }
       storageListeners.get(i).setStorage(player.getStorage());
+      nameLabels[i].setText(player.getName());
       i++;
     }
-    updateReseedActionWantEnabled();    
+    updateReseedActionWantEnabled();
   }
 
   public void beforeReseed() {

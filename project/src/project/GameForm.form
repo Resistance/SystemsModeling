@@ -264,7 +264,7 @@
                   <size top="2" left="0" bottom="0" right="0"/>
                 </border>
                 <children>
-                  <component id="23b3d" class="javax.swing.JLabel">
+                  <component id="23b3d" class="javax.swing.JLabel" binding="name1">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -291,7 +291,7 @@
                   <size top="0" left="0" bottom="2" right="0"/>
                 </border>
                 <children>
-                  <component id="9029c" class="javax.swing.JLabel">
+                  <component id="9029c" class="javax.swing.JLabel" binding="name2">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
