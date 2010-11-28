@@ -1,5 +1,9 @@
 package project;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -11,7 +15,6 @@ import java.util.*;
  * Time: 18:53:26
  */
 public class GameForm {
-  private JMenuBar menuBar;
   private JPanel panel1;
   private JButton b4;
   private JButton b3;
@@ -28,47 +31,71 @@ public class GameForm {
   private JLabel status;
   private JButton a0;
   private JButton b0;
-  private Mancala mancala = new Mancala();
-  private Player player1 = new Player();
-  private Player player2 = new Player();
-  private NewGameAction newGameAction = new NewGameAction("New Game", mancala);
+  private JLabel name1;
+  private JLabel name2;
 
-  public GameForm() {
-    newGameAction.setPlayers(Arrays.asList(player1, player2));
-    Map<Player, JButton> storages = new HashMap<Player, JButton>();
-    storages.put(player1, a0);
-    storages.put(player2, b0);
-    newGameAction.setStorages(storages);
-    Map<Player, Iterable<JButton>> pits = new HashMap<Player, Iterable<JButton>>();
-    pits.put(player1, Arrays.asList(a1, a2, a3, a4, a5, a6));
-    pits.put(player2, Arrays.asList(b1, b2, b3, b4, b5, b6));
-    newGameAction.setPits(pits);
-    menuBar = new JMenuBar();
-    JMenu gameMenu = new JMenu("Game");
-    JMenuItem newGame = new JMenuItem();
-    newGame.setAction(newGameAction);
-    gameMenu.add(newGame);
-    gameMenu.add(new JMenuItem("History"));
-    gameMenu.addSeparator();
-    gameMenu.add(new JMenuItem("Exit"));
-    menuBar.add(gameMenu);
+  public JButton getB4() {
+    return b4;
   }
 
-  public static void main(String[] args) {
-    JFrame frame = new JFrame("Mancala");
-    GameForm form = new GameForm();
-    frame.getContentPane().add(form.$$$getRootComponent$$$());
-    frame.setJMenuBar(form.getMenuBar());
-
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setLocationRelativeTo(null);
-    frame.pack();
-    frame.setResizable(false);
-    frame.setVisible(true);
+  public JButton getB3() {
+    return b3;
   }
 
-  public JMenuBar getMenuBar() {
-    return menuBar;
+  public JButton getA1() {
+    return a1;
+  }
+
+  public JButton getB5() {
+    return b5;
+  }
+
+  public JButton getA2() {
+    return a2;
+  }
+
+  public JButton getA3() {
+    return a3;
+  }
+
+  public JButton getA4() {
+    return a4;
+  }
+
+  public JButton getB2() {
+    return b2;
+  }
+
+  public JButton getA5() {
+    return a5;
+  }
+
+  public JButton getB1() {
+    return b1;
+  }
+
+  public JButton getA6() {
+    return a6;
+  }
+
+  public JButton getB6() {
+    return b6;
+  }
+
+  public JButton getA0() {
+    return a0;
+  }
+
+  public JButton getB0() {
+    return b0;
+  }
+
+  public JLabel getName1() {
+    return name1;
+  }
+
+  public JLabel getName2() {
+    return name2;
   }
 
   {
@@ -89,128 +116,220 @@ public class GameForm {
     panel1 = new JPanel();
     panel1.setLayout(new BorderLayout(0, 0));
     final JPanel panel2 = new JPanel();
-    panel2.setLayout(new GridBagLayout());
-    panel1.add(panel2, BorderLayout.CENTER);
+    panel2.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+    panel1.add(panel2, BorderLayout.NORTH);
+    panel2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2), null));
+    final JPanel panel3 = new JPanel();
+    panel3.setLayout(new BorderLayout(0, 0));
+    panel2.add(panel3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+    status = new JLabel();
+    status.setEnabled(true);
+    status.setFont(new Font(status.getFont().getName(), status.getFont().getStyle(), 16));
+    status.setHorizontalAlignment(2);
+    status.setHorizontalTextPosition(2);
+    status.setText("It is Alice's turn");
+    panel3.add(status, BorderLayout.CENTER);
+    final JLabel label1 = new JLabel();
+    label1.setFont(new Font(label1.getFont().getName(), label1.getFont().getStyle(), 16));
+    label1.setText("Status: ");
+    panel3.add(label1, BorderLayout.WEST);
+    final JPanel panel4 = new JPanel();
+    panel4.setLayout(new GridBagLayout());
+    panel2.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+    final JPanel panel5 = new JPanel();
+    panel5.setLayout(new BorderLayout(0, 0));
+    GridBagConstraints gbc;
+    gbc = new GridBagConstraints();
+    gbc.gridx = 0;
+    gbc.gridy = 1;
+    panel4.add(panel5, gbc);
+    panel5.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
+    b0 = new JButton();
+    b0.setEnabled(false);
+    b0.setFont(new Font(b0.getFont().getName(), b0.getFont().getStyle(), 24));
+    b0.setMaximumSize(new Dimension(85, 38));
+    b0.setMinimumSize(new Dimension(85, 38));
+    b0.setPreferredSize(new Dimension(85, 38));
+    b0.setText("0");
+    panel5.add(b0, BorderLayout.WEST);
+    final JPanel panel6 = new JPanel();
+    panel6.setLayout(new GridBagLayout());
+    panel5.add(panel6, BorderLayout.CENTER);
     b4 = new JButton();
     b4.setFont(new Font(b4.getFont().getName(), b4.getFont().getStyle(), 24));
-    b4.setText("4");
-    GridBagConstraints gbc;
+    b4.setIconTextGap(4);
+    b4.setMaximumSize(new Dimension(85, 38));
+    b4.setMinimumSize(new Dimension(85, 38));
+    b4.setPreferredSize(new Dimension(85, 38));
+    b4.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 2;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(b4, gbc);
+    panel6.add(b4, gbc);
     b3 = new JButton();
     b3.setFont(new Font(b3.getFont().getName(), b3.getFont().getStyle(), 24));
-    b3.setText("4");
+    b3.setMaximumSize(new Dimension(85, 38));
+    b3.setMinimumSize(new Dimension(85, 38));
+    b3.setPreferredSize(new Dimension(85, 38));
+    b3.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 3;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(b3, gbc);
+    panel6.add(b3, gbc);
     a1 = new JButton();
     a1.setFont(new Font(a1.getFont().getName(), a1.getFont().getStyle(), 24));
-    a1.setText("4");
+    a1.setMaximumSize(new Dimension(85, 38));
+    a1.setMinimumSize(new Dimension(85, 38));
+    a1.setPreferredSize(new Dimension(85, 38));
+    a1.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 0;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(a1, gbc);
+    panel6.add(a1, gbc);
     b5 = new JButton();
     b5.setFont(new Font(b5.getFont().getName(), b5.getFont().getStyle(), 24));
-    b5.setText("4");
+    b5.setMaximumSize(new Dimension(85, 38));
+    b5.setMinimumSize(new Dimension(85, 38));
+    b5.setPreferredSize(new Dimension(85, 38));
+    b5.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 1;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(b5, gbc);
+    panel6.add(b5, gbc);
     a2 = new JButton();
     a2.setFont(new Font(a2.getFont().getName(), a2.getFont().getStyle(), 24));
-    a2.setText("4");
+    a2.setMaximumSize(new Dimension(85, 38));
+    a2.setMinimumSize(new Dimension(85, 38));
+    a2.setPreferredSize(new Dimension(85, 38));
+    a2.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 1;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(a2, gbc);
+    panel6.add(a2, gbc);
     a3 = new JButton();
     a3.setFont(new Font(a3.getFont().getName(), a3.getFont().getStyle(), 24));
-    a3.setText("4");
+    a3.setMaximumSize(new Dimension(85, 38));
+    a3.setMinimumSize(new Dimension(85, 38));
+    a3.setPreferredSize(new Dimension(85, 38));
+    a3.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 2;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(a3, gbc);
+    panel6.add(a3, gbc);
     a4 = new JButton();
     a4.setFont(new Font(a4.getFont().getName(), a4.getFont().getStyle(), 24));
-    a4.setText("4");
+    a4.setMaximumSize(new Dimension(85, 38));
+    a4.setMinimumSize(new Dimension(85, 38));
+    a4.setPreferredSize(new Dimension(85, 38));
+    a4.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 3;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(a4, gbc);
+    panel6.add(a4, gbc);
     b2 = new JButton();
     b2.setFont(new Font(b2.getFont().getName(), b2.getFont().getStyle(), 24));
-    b2.setText("4");
+    b2.setMaximumSize(new Dimension(85, 38));
+    b2.setMinimumSize(new Dimension(85, 38));
+    b2.setPreferredSize(new Dimension(85, 38));
+    b2.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 4;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(b2, gbc);
+    panel6.add(b2, gbc);
     a5 = new JButton();
     a5.setFont(new Font(a5.getFont().getName(), a5.getFont().getStyle(), 24));
-    a5.setText("4");
+    a5.setMaximumSize(new Dimension(85, 38));
+    a5.setMinimumSize(new Dimension(85, 38));
+    a5.setPreferredSize(new Dimension(85, 38));
+    a5.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 4;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(a5, gbc);
+    panel6.add(a5, gbc);
     b1 = new JButton();
     b1.setFont(new Font(b1.getFont().getName(), b1.getFont().getStyle(), 24));
-    b1.setText("4");
+    b1.setMaximumSize(new Dimension(85, 38));
+    b1.setMinimumSize(new Dimension(85, 38));
+    b1.setPreferredSize(new Dimension(85, 38));
+    b1.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 5;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(b1, gbc);
+    panel6.add(b1, gbc);
     a6 = new JButton();
     a6.setFont(new Font(a6.getFont().getName(), a6.getFont().getStyle(), 24));
-    a6.setText("4");
+    a6.setMaximumSize(new Dimension(85, 38));
+    a6.setMinimumSize(new Dimension(85, 38));
+    a6.setPreferredSize(new Dimension(85, 38));
+    a6.setText(" ");
     gbc = new GridBagConstraints();
     gbc.gridx = 5;
     gbc.gridy = 1;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(a6, gbc);
+    panel6.add(a6, gbc);
     b6 = new JButton();
     b6.setFont(new Font(b6.getFont().getName(), b6.getFont().getStyle(), 24));
-    b6.setText("4");
+    b6.setMaximumSize(new Dimension(85, 38));
+    b6.setMinimumSize(new Dimension(85, 38));
+    b6.setPreferredSize(new Dimension(85, 38));
+    b6.setText(" ");
     b6.putClientProperty("html.disable", Boolean.FALSE);
     b6.putClientProperty("hideActionText", Boolean.FALSE);
     gbc = new GridBagConstraints();
     gbc.gridx = 0;
     gbc.gridy = 0;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(b6, gbc);
-    final JPanel panel3 = new JPanel();
-    panel3.setLayout(new BorderLayout(0, 0));
-    panel1.add(panel3, BorderLayout.NORTH);
-    final JPanel panel4 = new JPanel();
-    panel4.setLayout(new BorderLayout(0, 0));
-    panel1.add(panel4, BorderLayout.SOUTH);
-    status = new JLabel();
-    status.setEnabled(true);
-    status.setFont(new Font(status.getFont().getName(), status.getFont().getStyle(), 18));
-    status.setText("It is Alice's turn");
-    panel4.add(status, BorderLayout.CENTER);
+    panel6.add(b6, gbc);
     a0 = new JButton();
     a0.setEnabled(false);
     a0.setFont(new Font(a0.getFont().getName(), a0.getFont().getStyle(), 24));
+    a0.setMaximumSize(new Dimension(85, 38));
+    a0.setMinimumSize(new Dimension(85, 38));
+    a0.setPreferredSize(new Dimension(85, 38));
     a0.setText("0");
-    panel1.add(a0, BorderLayout.EAST);
-    b0 = new JButton();
-    b0.setEnabled(false);
-    b0.setFont(new Font(b0.getFont().getName(), b0.getFont().getStyle(), 24));
-    b0.setText("0");
-    panel1.add(b0, BorderLayout.WEST);
+    panel5.add(a0, BorderLayout.EAST);
+    final JPanel panel7 = new JPanel();
+    panel7.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+    gbc = new GridBagConstraints();
+    gbc.gridx = 0;
+    gbc.gridy = 2;
+    gbc.fill = GridBagConstraints.BOTH;
+    panel4.add(panel7, gbc);
+    panel7.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0), null));
+    name1 = new JLabel();
+    name1.setFont(new Font(name1.getFont().getName(), name1.getFont().getStyle(), 16));
+    name1.setText("Player 1");
+    panel7.add(name1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    final Spacer spacer1 = new Spacer();
+    panel7.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final JPanel panel8 = new JPanel();
+    panel8.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+    gbc = new GridBagConstraints();
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    gbc.fill = GridBagConstraints.BOTH;
+    panel4.add(panel8, gbc);
+    panel8.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(0, 0, 2, 0), null));
+    name2 = new JLabel();
+    name2.setFont(new Font(name2.getFont().getName(), name2.getFont().getStyle(), 16));
+    name2.setText("Player 2");
+    panel8.add(name2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    final Spacer spacer2 = new Spacer();
+    panel8.add(spacer2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final JSeparator separator1 = new JSeparator();
+    separator1.setEnabled(false);
+    separator1.setOpaque(true);
+    panel2.add(separator1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
   }
 
   /**

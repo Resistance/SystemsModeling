@@ -2,51 +2,45 @@ package project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Collection;
+import java.util.List;
 
 public class NewGameAction extends AbstractAction {
-  private final Mancala mancala;
-  private Iterable<Player> players;
-  private Map<Player, JButton> storages;
-  private Map<Player, Iterable<JButton>> pits;
+  private Mancala mancala;
 
-  public NewGameAction(String name, Mancala mancala) {
+  public NewGameAction(String name) {
     super(name);
-    this.mancala = mancala;
   }
 
   public void actionPerformed(ActionEvent e) {
-    mancala.removeAllFromPlayers();
-    for (Player player : players) {
-      mancala.addToPlayers(player);
+    NamesData data = new NamesData();
+    List<? extends Player> players = mancala.getPlayers();
+    if (players.size() == 2) {
+      data.setName1(players.get(0).getName());
+      data.setName2(players.get(1).getName());
     }
-    mancala.init();
-    for (Player player : players) {
-      ContainerListener storageListener = new ContainerListener(player.getStorage(), storages.get(player));
-      storageListener.register();
-      storageListener.update();
-      Iterator<JButton> pitButtons = pits.get(player).iterator();
-      for (Pit pit : player.getPits()) {
-        JButton pitButton = pitButtons.next();
-        pitButton.setAction(new ReseedAction(mancala, pit));
-        ContainerListener pitListener = new ContainerListener(pit, pitButton);
-        pitListener.register();
-        pitListener.update();
-      }
+    NamesForm namesForm = new NamesForm();
+    namesForm.setData(data);
+    namesForm.setVisible(true);
+    namesForm.getData(data);
+    if (data.isOk()) {
+      mancala.removeAllFromPlayers();
+      mancala.addToPlayers(new Player().withName(data.getName1()));
+      mancala.addToPlayers(new Player().withName(data.getName2()));
+      mancala.init();
     }
-    mancala.setCurrentPlayer(players.iterator().next());
   }
 
-  public void setPlayers(Iterable<Player> players) {
-    this.players = players;
+  public Mancala getMancala() {
+    return mancala;
   }
 
-  public void setStorages(Map<Player, JButton> storages) {
-    this.storages = storages;
+  public void setMancala(Mancala mancala) {
+    this.mancala = mancala;
+    invalidate();
   }
 
-  public void setPits(Map<Player, Iterable<JButton>> pits) {
-    this.pits = pits;
+  private void invalidate() {
+    setEnabled(mancala != null);
   }
 }
