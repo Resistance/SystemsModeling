@@ -1,6 +1,8 @@
 package project;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 public class SwingView implements View {
@@ -19,7 +21,8 @@ public class SwingView implements View {
     JMenuItem newGame = new JMenuItem();
     newGame.setAction(newGameAction);
     gameMenu.add(newGame);
-    gameMenu.add(new JMenuItem("History"));
+    JMenuItem history = new JMenuItem("History");
+    gameMenu.add(history);
     gameMenu.addSeparator();
     gameMenu.add(new JMenuItem("Exit"));
     menuBar.add(gameMenu);
@@ -43,6 +46,12 @@ public class SwingView implements View {
 
     storageListeners.add(new StorageListener(gameForm.getA0()));
     storageListeners.add(new StorageListener(gameForm.getB0()));
+
+    history.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        new HistoryForm().setVisible(true);
+      }
+    });
   }
 
   public void start() {
