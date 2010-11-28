@@ -2,8 +2,6 @@ package project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Iterator;
-import java.util.Map;
 
 public class NewGameAction extends AbstractAction {
   private Mancala mancala;
@@ -32,6 +30,11 @@ public class NewGameAction extends AbstractAction {
 
   public void setMancala(Mancala mancala) {
     this.mancala = mancala;
+    invalidate();
+  }
+
+  private void invalidate() {
+    setEnabled((mancala != null) && (players != null));
   }
 
   public Iterable<? extends Player> getPlayers() {

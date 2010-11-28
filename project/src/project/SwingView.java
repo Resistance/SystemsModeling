@@ -1,18 +1,19 @@
 package project;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class SwingView implements View {
+  private static final int NUM_PLAYERS = 2;
+  private static final int PITS_PER_PLAYER = 6;
   private Mancala mancala;
   private GameForm gameForm = new GameForm();
-  private Collection<? extends Player> players = new ArrayList<Player>();
+  private Collection<? extends Player> players = new ArrayList<Player>(Arrays.asList(new Player[] {new Player(), new Player()}));
   private NewGameAction newGameAction = new NewGameAction("New Game", players);
   private JFrame gameFrame = new JFrame("Mancala");
   private JMenuBar menuBar = new JMenuBar();
-  private ReseedAction[][] reseedActions;
-  private ContainerListener[] containerListeners;
+  private List<ReseedAction> reseedActions = new ArrayList<ReseedAction>(NUM_PLAYERS * PITS_PER_PLAYER);
+  private List<StorageListener> storageListeners = new ArrayList<StorageListener>(NUM_PLAYERS);
 
   public SwingView() {
     JMenu gameMenu = new JMenu("Game");
@@ -31,26 +32,18 @@ public class SwingView implements View {
     gameFrame.pack();
     gameFrame.setResizable(false);
 
-    reseedActions = new ReseedAction[2][6];
-    for (int i = 0; i < 2; i++) {
-      for (int j = 0; j < 6; j++) {
-        reseedActions[i][j] = new ReseedAction();
-      }
+    JButton[] pitButtons = {
+        gameForm.getA1(), gameForm.getA2(), gameForm.getA3(), gameForm.getA4(), gameForm.getA5(), gameForm.getA6(),
+        gameForm.getB1(), gameForm.getB2(), gameForm.getB3(), gameForm.getB4(), gameForm.getB5(), gameForm.getB6()
+    };
+    for (int i = 0; i < NUM_PLAYERS * PITS_PER_PLAYER; i++) {
+      ReseedAction reseedAction = new ReseedAction();
+      reseedActions.add(reseedAction);
+      pitButtons[i].setAction(reseedAction);
     }
 
-    gameForm.getA1().setAction(reseedActions[0][0]);
-    gameForm.getA2().setAction(reseedActions[0][1]);
-    gameForm.getA3().setAction(reseedActions[0][2]);
-    gameForm.getA4().setAction(reseedActions[0][3]);
-    gameForm.getA5().setAction(reseedActions[0][4]);
-    gameForm.getA6().setAction(reseedActions[0][5]);
-
-    gameForm.getB1().setAction(reseedActions[1][0]);
-    gameForm.getB2().setAction(reseedActions[1][1]);
-    gameForm.getB3().setAction(reseedActions[1][2]);
-    gameForm.getB4().setAction(reseedActions[1][3]);
-    gameForm.getB5().setAction(reseedActions[1][4]);
-    gameForm.getB6().setAction(reseedActions[1][5]);
+    storageListeners.add(new StorageListener(gameForm.getA0()));
+    storageListeners.add(new StorageListener(gameForm.getB0()));
   }
 
   public void start() {
@@ -58,15 +51,44 @@ public class SwingView implements View {
   }
 
   public void afterInit() {
-    //To change body of implemented methods use File | Settings | File Templates.
-  }
-
-  public void afterReseed(int captured) {
-    //To change body of implemented methods use File | Settings | File Templates.
+    List<? extends Player> players = mancala.getPlayers();
+    int playersSize = players.size();
+    if (playersSize != NUM_PLAYERS) {
+      throw new IllegalStateException("The game has " + playersSize + " players, but this view requires exactly " + NUM_PLAYERS);
+    }
+    int i = 0;
+    for (Player player : players) {
+      List<? extends Pit> pits = player.getPits();
+      int pitsSize = pits.size();
+      if (pitsSize != PITS_PER_PLAYER) {
+        throw new IllegalStateException("The player + " + player.getName() + " has " + pitsSize + " pits, but this view requires exactly " + PITS_PER_PLAYER);
+      }
+      int j = 0;
+      for (Pit pit : pits) {
+        reseedActions.get(i * PITS_PER_PLAYER + j).setPit(pit);
+        j++;
+      }
+      storageListeners.get(i).setStorage(player.getStorage());
+      i++;
+    }
+    updateReseedActionWantEnabled();    
   }
 
   public void beforeReseed() {
     //To change body of implemented methods use File | Settings | File Templates.
+  }
+
+  public void afterReseed(int captured) {
+    updateReseedActionWantEnabled();
+  }
+
+  private void updateReseedActionWantEnabled() {
+    int currentPlayerIndex = mancala.indexOfPlayers(mancala.getCurrentPlayer());
+    ListIterator<ReseedAction> it = reseedActions.listIterator();
+    while (it.hasNext()) {
+      int i = it.nextIndex();
+      it.next().setWantEnabled(i / PITS_PER_PLAYER == currentPlayerIndex);
+    }
   }
 
   public Mancala getMancala() {
@@ -92,17 +114,19 @@ public class SwingView implements View {
 
   private void mancalaChanged() {
     newGameAction.setMancala(mancala);
+    for (ReseedAction reseedAction : reseedActions) {
+      reseedAction.setMancala(mancala);
+    }
   }
 
   public void removeYou() {
     setMancala(null);
   }
 
-  public Iterable<? extends Player> getNewGamePlayers() {
-    return null;  //To change body of created methods use File | Settings | File Templates.
-  }
-
-  public void updateContainer(Container container) {
-
+  public static void main(String[] args) {
+    SwingView view = new SwingView();
+    Mancala mancala = new Mancala();
+    view.setMancala(mancala);
+    view.start();
   }
 }

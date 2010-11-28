@@ -1,2 +1,2 @@
-Main-Class: project.GameForm
+Main-Class: project.SwingView
 Class-Path: lib/de.uni_kassel.features_0.24.0.201005281321.jar lib/de.uni_paderborn.runtimetools_1.0.4.201005281321.jar
