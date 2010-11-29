@@ -1,9 +1,11 @@
 package project;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 public class SwingView implements View {
   private static final int NUM_PLAYERS = 2;
@@ -28,14 +30,17 @@ public class SwingView implements View {
     JMenuItem history = new JMenuItem("History");
     gameMenu.add(history);
     gameMenu.addSeparator();
-    gameMenu.add(new JMenuItem("Exit"));
+    JMenuItem exitGame = new JMenuItem("Exit");
+    gameMenu.add(exitGame);
     menuBar.add(gameMenu);
 
     gameFrame.getContentPane().add(gameForm.$$$getRootComponent$$$());
     gameFrame.setJMenuBar(menuBar);
-    gameFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    gameFrame.setLocationRelativeTo(null);
+    gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     gameFrame.pack();
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Dimension screenSize = tk.getScreenSize();
+    gameFrame.setLocation( (screenSize.width - gameFrame.getWidth())/2, (screenSize.height - gameFrame.getHeight())/2 );
     gameFrame.setResizable(false);
 
     JButton[] pitButtons = {
@@ -54,6 +59,12 @@ public class SwingView implements View {
     history.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         new HistoryForm().setVisible(true);
+      }
+    });
+
+    exitGame.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        gameFrame.dispose();
       }
     });
   }
