@@ -3,6 +3,7 @@ package project;
 public class NamesData {
   private String name1;
   private String name2;
+  private int seeds;
   private boolean ok;
 
   public NamesData() {
@@ -22,6 +23,14 @@ public class NamesData {
 
   public void setName2(final String name2) {
     this.name2 = name2;
+  }
+
+  public int getSeeds() {
+    return seeds;
+  }
+
+  public void setSeeds(final int seeds) {
+    this.seeds = seeds;
   }
 
   public void setOk(boolean ok) {

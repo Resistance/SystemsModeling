@@ -27,7 +27,7 @@ public class NewGameAction extends AbstractAction {
       mancala.removeAllFromPlayers();
       mancala.addToPlayers(new Player().withName(data.getName1()));
       mancala.addToPlayers(new Player().withName(data.getName2()));
-      mancala.init();
+      mancala.init(data.getSeeds());
     }
   }
 

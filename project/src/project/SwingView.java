@@ -171,6 +171,9 @@ public class SwingView implements View {
       }
     }
     gameForm.getStatus().setText(sb.toString());
+    if (mancala.isOver()) {
+      new GameOverDialog("Game Over").setVisible(true);
+    }
   }
 
   private void updateReseedActionWantEnabled() {
