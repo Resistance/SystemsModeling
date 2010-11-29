@@ -12,10 +12,11 @@ import java.awt.event.KeyEvent;
 
 public class NamesForm extends JDialog {
   private JPanel panel1;
-  private JTextField pleaseEnterTheNameTextField;
-  private JTextField pleaseEnterTheNameTextField1;
+  private JTextField leftPlayerTextField;
+  private JTextField rightPlayerTextField;
   private JButton startNewGameButton;
   private JButton cancelButton;
+  private JTextField seedsField;
   private Window window;
   private boolean ok;
 
@@ -50,20 +51,26 @@ public class NamesForm extends JDialog {
   }
 
   public void setData(NamesData data) {
-    pleaseEnterTheNameTextField.setText(data.getName1());
-    pleaseEnterTheNameTextField1.setText(data.getName2());
+    leftPlayerTextField.setText(data.getName1());
+    rightPlayerTextField.setText(data.getName2());
   }
 
   public void getData(NamesData data) {
-    data.setName1(pleaseEnterTheNameTextField.getText());
-    data.setName2(pleaseEnterTheNameTextField1.getText());
+    data.setName1(rightPlayerTextField.getText());
+    data.setName2(leftPlayerTextField.getText());
+    try {
+      data.setSeeds(Integer.parseInt(seedsField.getText()));
+    }
+    catch(Exception e) {
+      data.setSeeds(4);
+    }
     data.setOk(ok);
   }
 
   public boolean isModified(NamesData data) {
-    if (pleaseEnterTheNameTextField.getText() != null ? !pleaseEnterTheNameTextField.getText().equals(data.getName1()) : data.getName1() != null)
+    if (leftPlayerTextField.getText() != null ? !leftPlayerTextField.getText().equals(data.getName1()) : data.getName1() != null)
       return true;
-    if (pleaseEnterTheNameTextField1.getText() != null ? !pleaseEnterTheNameTextField1.getText().equals(data.getName2()) : data.getName2() != null)
+    if (rightPlayerTextField.getText() != null ? !rightPlayerTextField.getText().equals(data.getName2()) : data.getName2() != null)
       return true;
     return false;
   }
@@ -108,16 +115,16 @@ public class NamesForm extends JDialog {
     gbc.gridy = 2;
     gbc.fill = GridBagConstraints.VERTICAL;
     panel2.add(spacer1, gbc);
-    pleaseEnterTheNameTextField = new JTextField();
-    pleaseEnterTheNameTextField.setColumns(20);
-    pleaseEnterTheNameTextField.setFocusCycleRoot(true);
-    pleaseEnterTheNameTextField.setFocusTraversalPolicyProvider(false);
+    leftPlayerTextField = new JTextField();
+    leftPlayerTextField.setColumns(20);
+    leftPlayerTextField.setFocusCycleRoot(true);
+    leftPlayerTextField.setFocusTraversalPolicyProvider(false);
     gbc = new GridBagConstraints();
     gbc.gridx = 0;
     gbc.gridy = 1;
     gbc.anchor = GridBagConstraints.WEST;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(pleaseEnterTheNameTextField, gbc);
+    panel2.add(leftPlayerTextField, gbc);
     final JLabel label2 = new JLabel();
     label2.setFocusable(false);
     label2.setText("Please enter the name of the second player:");
@@ -126,14 +133,14 @@ public class NamesForm extends JDialog {
     gbc.gridy = 3;
     gbc.anchor = GridBagConstraints.WEST;
     panel2.add(label2, gbc);
-    pleaseEnterTheNameTextField1 = new JTextField();
-    pleaseEnterTheNameTextField1.setColumns(30);
+    rightPlayerTextField = new JTextField();
+    rightPlayerTextField.setColumns(30);
     gbc = new GridBagConstraints();
     gbc.gridx = 0;
     gbc.gridy = 4;
     gbc.anchor = GridBagConstraints.WEST;
     gbc.fill = GridBagConstraints.HORIZONTAL;
-    panel2.add(pleaseEnterTheNameTextField1, gbc);
+    panel2.add(rightPlayerTextField, gbc);
     final JPanel panel3 = new JPanel();
     panel3.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
     gbc = new GridBagConstraints();
@@ -149,8 +156,8 @@ public class NamesForm extends JDialog {
     startNewGameButton = new JButton();
     startNewGameButton.setText("Start new game");
     panel3.add(startNewGameButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-    label1.setLabelFor(pleaseEnterTheNameTextField);
-    label2.setLabelFor(pleaseEnterTheNameTextField1);
+    label1.setLabelFor(leftPlayerTextField);
+    label2.setLabelFor(rightPlayerTextField);
   }
 
   /**

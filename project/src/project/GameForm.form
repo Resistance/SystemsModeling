@@ -70,7 +70,7 @@
                       <minimumSize width="85" height="38"/>
                       <preferredSize width="85" height="38"/>
                       <text value="0"/>
-                      <toolTipText value="Score of top player"/>
+                      <toolTipText value="Score of left player"/>
                     </properties>
                   </component>
                   <grid id="b67ad" layout-manager="GridBagLayout">
@@ -250,7 +250,7 @@
                       <minimumSize width="85" height="38"/>
                       <preferredSize width="85" height="38"/>
                       <text value="0"/>
-                      <toolTipText value="Score of bottom player"/>
+                      <toolTipText value="Score of right player"/>
                     </properties>
                   </component>
                 </children>
@@ -272,7 +272,8 @@
                     </constraints>
                     <properties>
                       <font size="24"/>
-                      <text value="Player 1"/>
+                      <text value="Right Player"/>
+                      <toolTipText value="Right player's name"/>
                     </properties>
                   </component>
                   <hspacer id="262a7">
@@ -299,7 +300,8 @@
                     </constraints>
                     <properties>
                       <font size="24"/>
-                      <text value="Player 2"/>
+                      <text value="Left Player"/>
+                      <toolTipText value="Left player's name"/>
                     </properties>
                   </component>
                   <hspacer id="165d2">
