@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class NamesForm extends JDialog {
   private JPanel panel1;
@@ -33,9 +34,18 @@ public class NamesForm extends JDialog {
       public void actionPerformed(ActionEvent e) {
         dispose();
       }
-    });
-    setLocationRelativeTo(null);
+    });       
+    $$$getRootComponent$$$().registerKeyboardAction(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        dispose();
+      }
+    }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    
+    getRootPane().setDefaultButton(startNewGameButton);
     pack();
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Dimension screenSize = tk.getScreenSize();
+    setLocation( (screenSize.width - getWidth())/2, (screenSize.height - getHeight())/2 );
     setResizable(false);
   }
 
