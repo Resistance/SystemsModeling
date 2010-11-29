@@ -10,7 +10,10 @@ public class NamesData {
   }
 
   public String getName1() {
-    return name1;
+    if (name1 != null && name1.length() > 0) {
+      return name1;
+    }
+    return "Player 1";
   }
 
   public void setName1(final String name1) {
@@ -18,7 +21,10 @@ public class NamesData {
   }
 
   public String getName2() {
-    return name2;
+    if (name2 != null && name2.length() > 0) {
+      return name2;
+    }
+    return "Player 2";
   }
 
   public void setName2(final String name2) {
