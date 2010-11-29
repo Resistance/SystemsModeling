@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.*;
 
 public class HistoryForm extends JDialog {
   private JTextArea textArea1;
@@ -19,36 +18,14 @@ public class HistoryForm extends JDialog {
   public HistoryForm() {
     setTitle("History");
     setContentPane($$$getRootComponent$$$());
-    pack();            
+    pack();
     Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension screenSize = tk.getScreenSize();
-    setLocation( (screenSize.width - getWidth())/2, (screenSize.height - getHeight())/2 );
+    setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
     setModal(true);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    BufferedReader reader = null;
-    try {
-      reader = new BufferedReader(new InputStreamReader(new FileInputStream("history.txt")));
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
-    if (reader != null) {
-      StringBuilder sb = new StringBuilder();
-      String s;
-      try {
-        while ((s = reader.readLine()) != null) {
-          sb.append(s).append('\n');
-        }
-      } catch (IOException e) {
-        e.printStackTrace();
-      } finally {
-        try {
-          reader.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-      textArea1.setText(sb.toString());
-    }
+    String s2 = HistoryHelper.readAllReverse();
+    textArea1.setText(s2);
 
     closeButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -82,7 +59,9 @@ public class HistoryForm extends JDialog {
     panel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2), null));
     textArea1 = new JTextArea();
     textArea1.setColumns(50);
+    textArea1.setEditable(false);
     textArea1.setRows(10);
+    textArea1.setToolTipText("Previously played games");
     panel1.add(textArea1, BorderLayout.CENTER);
     final JPanel panel2 = new JPanel();
     panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
@@ -92,6 +71,9 @@ public class HistoryForm extends JDialog {
     panel2.add(closeButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     final Spacer spacer1 = new Spacer();
     panel2.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final JLabel label1 = new JLabel();
+    label1.setText("Previously played Games (latest at the top):");
+    panel1.add(label1, BorderLayout.NORTH);
   }
 
   /**

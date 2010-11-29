@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -133,6 +134,31 @@ public class SwingView implements View {
         sb.append("Draw game.");
         gameOver.append("Draw game, well played!");
       }
+
+      StringBuilder history = new StringBuilder(new SimpleDateFormat("[dd.MM.yyyy HH:mm] ").format(new Date()));
+      Player first = winner == null ? mancala.getPlayers().get(0) : winner;
+      Player second = first.getNext();
+      if (winner != null) {
+        history.append('\'');
+        history.append(first.getName());
+        history.append("\' won \'");
+        history.append(second.getName());
+        history.append('\'');
+      }
+      else {
+        history.append('\'');
+        history.append(first.getName());
+        history.append("\' and \'");
+        history.append(second.getName());
+        history.append("\' were tied");
+      }
+      history.append(" with score ");
+      history.append(first.getScore());
+      history.append(':');
+      history.append(second.getScore());
+
+      String s = history.toString();
+      HistoryHelper.append(s);
     }
     else {
       if (currentPlayerScoreDiff > 0) {

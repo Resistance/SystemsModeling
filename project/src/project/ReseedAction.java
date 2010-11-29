@@ -21,9 +21,6 @@ public class ReseedAction extends AbstractAction implements PropertyChangeListen
 
   public void setMancala(Mancala mancala) {
     if (mancala != this.mancala) {
-      if (this.mancala != null) {
-        //this.mancala.remove
-      }
       this.mancala = mancala;
       invalidate();
     }
