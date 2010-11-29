@@ -27,7 +27,7 @@
               <focusCycleRoot value="false"/>
               <focusable value="false"/>
               <labelFor value="2a3"/>
-              <text value="Please enter the name of the first player:"/>
+              <text value="First player:"/>
             </properties>
           </component>
           <vspacer id="37de2">
@@ -57,7 +57,7 @@
             <properties>
               <focusable value="false"/>
               <labelFor value="655c2"/>
-              <text value="Please enter the name of the second player:"/>
+              <text value="Second player:"/>
             </properties>
           </component>
           <component id="655c2" class="javax.swing.JTextField" binding="pleaseEnterTheNameTextField1" default-binding="true">
