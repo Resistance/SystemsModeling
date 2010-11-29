@@ -94,12 +94,12 @@ public class GameForm {
     return name1;
   }
 
-  public JLabel getName2() {
-    return name2;
-  }
-
   public JLabel getStatus() {
     return status;
+  }
+
+  public JLabel getName2() {
+    return name2;
   }
 
   {

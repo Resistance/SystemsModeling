@@ -13,7 +13,9 @@
         <constraints border-constraint="Center"/>
         <properties>
           <columns value="50"/>
+          <editable value="false"/>
           <rows value="10"/>
+          <toolTipText value="Previously played games"/>
         </properties>
       </component>
       <grid id="b610a" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -37,6 +39,12 @@
           </hspacer>
         </children>
       </grid>
+      <component id="aff92" class="javax.swing.JLabel">
+        <constraints border-constraint="North"/>
+        <properties>
+          <text value="Previously played Games (latest at the top):"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
