@@ -15,6 +15,10 @@ public class SwingView implements View {
   private JMenuBar menuBar = new JMenuBar();
   private List<ReseedAction> reseedActions = new ArrayList<ReseedAction>(NUM_PLAYERS * PITS_PER_PLAYER);
   private List<StorageListener> storageListeners = new ArrayList<StorageListener>(NUM_PLAYERS);
+  private Player currentPlayer;
+  private int currentPlayerScore;
+  private int otherPlayerScore;
+  private int currentPlayerIndex;
 
   public SwingView() {
     JMenu gameMenu = new JMenu("Game");
@@ -82,22 +86,89 @@ public class SwingView implements View {
       i++;
     }
     updateReseedActionWantEnabled();
+    gameForm.getStatus().setText("It's " + mancala.getCurrentPlayer().getName() + "'s turn.");
   }
 
   public void beforeReseed() {
-    //To change body of implemented methods use File | Settings | File Templates.
+    currentPlayer = mancala.getCurrentPlayer();
+    currentPlayerScore = currentPlayer.getScore();
+    otherPlayerScore = currentPlayer.getNext().getScore();
   }
 
   public void afterReseed(int captured) {
     updateReseedActionWantEnabled();
+
+    int currentPlayerNewScore = currentPlayer.getScore();
+    Player otherPlayer = currentPlayer.getNext();
+    int otherPlayerNewScore = otherPlayer.getScore();
+
+    int otherPlayerScoreDiff = otherPlayerNewScore - otherPlayerScore;
+    int currentPlayerScoreDiff = currentPlayerNewScore - currentPlayerScore;
+
+    StringBuilder sb = new StringBuilder();
+    boolean b = false;
+    if (otherPlayerScoreDiff > 0) {
+      sb.append(currentPlayer.getName());
+      sb.append(" scored ");
+      sb.append(otherPlayerScoreDiff);
+      sb.append(" points for");
+      sb.append(otherPlayer.getName());
+      b = true;
+    }
+    if (currentPlayerScoreDiff > 0) {
+      if (b) {
+        sb.append(" and ");
+      }
+      else {
+        sb.append(currentPlayer.getName());
+        sb.append(" scored ");
+      }
+      sb.append(currentPlayerScoreDiff);
+      sb.append(" points for self");
+      if (captured != -1) {
+        sb.append(" (captured ");
+        sb.append(captured);
+        sb.append(")");
+      }
+      b = true;
+    }
+    if (b) {
+      sb.append(". ");
+    }
+
+    if (mancala.isOver()) {
+      sb.append("Game over! ");
+      Player winner = mancala.getPreviousWinner();
+      if (winner != null) {
+        sb.append(winner.getName());
+        sb.append(" celebrates victory!");
+      }
+      else {
+        sb.append("Draw, well played!");
+      }
+    }
+    else {
+      Player newCurrentPlayer = mancala.getCurrentPlayer();
+      if (newCurrentPlayer == currentPlayer) {
+        sb.append(currentPlayer.getName());
+        sb.append(" gets another turn.");
+      }
+      else {
+        sb.append("It's ");
+        sb.append(newCurrentPlayer.getName());
+        sb.append("'s turn.");
+      }
+    }
+    gameForm.getStatus().setText(sb.toString());
   }
 
   private void updateReseedActionWantEnabled() {
+    boolean over = mancala.isOver();
     int currentPlayerIndex = mancala.indexOfPlayers(mancala.getCurrentPlayer());
     ListIterator<ReseedAction> it = reseedActions.listIterator();
     while (it.hasNext()) {
       int i = it.nextIndex();
-      it.next().setWantEnabled(i / PITS_PER_PLAYER == currentPlayerIndex);
+      it.next().setWantEnabled(!over && (i / PITS_PER_PLAYER == currentPlayerIndex));
     }
   }
 

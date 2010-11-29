@@ -31,7 +31,7 @@
                   <font size="16"/>
                   <horizontalAlignment value="2"/>
                   <horizontalTextPosition value="2"/>
-                  <text value="It is Alice's turn"/>
+                  <text value="Start a new game!"/>
                 </properties>
               </component>
               <component id="abb4a" class="javax.swing.JLabel">
