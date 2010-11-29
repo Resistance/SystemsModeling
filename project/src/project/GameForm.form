@@ -28,15 +28,22 @@
                 <constraints border-constraint="Center"/>
                 <properties>
                   <enabled value="true"/>
+                  <focusable value="false"/>
                   <font size="16"/>
                   <horizontalAlignment value="2"/>
                   <horizontalTextPosition value="2"/>
+                  <maximumSize width="660" height="20"/>
+                  <opaque value="false"/>
+                  <preferredSize width="650" height="20"/>
+                  <requestFocusEnabled value="false"/>
                   <text value="Start a new game!"/>
                 </properties>
               </component>
               <component id="abb4a" class="javax.swing.JLabel">
                 <constraints border-constraint="West"/>
                 <properties>
+                  <enabled value="false"/>
+                  <focusable value="false"/>
                   <font size="16"/>
                   <text value="Status: "/>
                 </properties>
@@ -266,7 +273,7 @@
                   <size top="2" left="0" bottom="0" right="0"/>
                 </border>
                 <children>
-                  <component id="23b3d" class="javax.swing.JLabel" binding="name1">
+                  <component id="23b3d" class="javax.swing.JLabel" binding="right">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -294,7 +301,7 @@
                   <size top="0" left="0" bottom="2" right="0"/>
                 </border>
                 <children>
-                  <component id="9029c" class="javax.swing.JLabel" binding="name2">
+                  <component id="9029c" class="javax.swing.JLabel" binding="left">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>

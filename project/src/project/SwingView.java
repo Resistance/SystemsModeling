@@ -80,7 +80,7 @@ public class SwingView implements View {
       throw new IllegalStateException("The game has " + playersSize + " players, but this view requires exactly " + NUM_PLAYERS);
     }
     int i = 0;
-    JLabel[] nameLabels = {gameForm.getName1(), gameForm.getName2()};
+    JLabel[] nameLabels = {gameForm.getRight(), gameForm.getLeft()};
     for (Player player : players) {
       List<? extends Pit> pits = player.getPits();
       int pitsSize = pits.size();
@@ -97,7 +97,7 @@ public class SwingView implements View {
       i++;
     }
     updateReseedActionWantEnabled();
-    gameForm.getStatus().setText("It's " + mancala.getCurrentPlayer().getName() + "'s turn.");
+    gameForm.getStatus().setText(mancala.getCurrentPlayer().getName() + " starts this game.");
   }
 
   public void beforeReseed() {
@@ -110,69 +110,45 @@ public class SwingView implements View {
     updateReseedActionWantEnabled();
 
     int currentPlayerNewScore = currentPlayer.getScore();
-    Player otherPlayer = currentPlayer.getNext();
-    int otherPlayerNewScore = otherPlayer.getScore();
-
-    int otherPlayerScoreDiff = otherPlayerNewScore - otherPlayerScore;
     int currentPlayerScoreDiff = currentPlayerNewScore - currentPlayerScore;
 
     StringBuilder sb = new StringBuilder();
-    boolean b = false;
-    if (otherPlayerScoreDiff > 0) {
-      sb.append(currentPlayer.getName());
-      sb.append(" scored ");
-      sb.append(otherPlayerScoreDiff);
-      sb.append(" points for");
-      sb.append(otherPlayer.getName());
-      b = true;
-    }
-    if (currentPlayerScoreDiff > 0) {
-      if (b) {
-        sb.append(" and ");
-      }
-      else {
-        sb.append(currentPlayer.getName());
-        sb.append(" scored ");
-      }
-      sb.append(currentPlayerScoreDiff);
-      sb.append(" points for self");
-      if (captured != -1) {
-        sb.append(" (captured ");
-        sb.append(captured);
-        sb.append(")");
-      }
-      b = true;
-    }
-    if (b) {
-      sb.append(". ");
-    }
+    StringBuilder gameOver = new StringBuilder();
 
     if (mancala.isOver()) {
-      sb.append("Game over! ");
+      sb.append("Game over.");
       Player winner = mancala.getPreviousWinner();
       if (winner != null) {
-        sb.append(winner.getName());
-        sb.append(" celebrates victory!");
+        gameOver.append("'");
+        gameOver.append(winner.getName());
+        gameOver.append("' won this game ");
+        gameOver.append(winner.getScore());
+        gameOver.append(":");
+        gameOver.append(winner.getNext().getScore());
+        gameOver.append(" over '");
+        gameOver.append(winner.getNext().getName());
+        gameOver.append("'. Well done!");
       }
       else {
-        sb.append("Draw, well played!");
+        sb.append("Draw game.");
+        gameOver.append("Draw game, well played!");
       }
     }
     else {
-      Player newCurrentPlayer = mancala.getCurrentPlayer();
-      if (newCurrentPlayer == currentPlayer) {
+      if (currentPlayerScoreDiff > 0) {
         sb.append(currentPlayer.getName());
-        sb.append(" gets another turn.");
-      }
-      else {
-        sb.append("It's ");
-        sb.append(newCurrentPlayer.getName());
-        sb.append("'s turn.");
+        sb.append(" scored ");
+        sb.append(currentPlayerScoreDiff);
+        Player newCurrentPlayer = mancala.getCurrentPlayer();
+        if (newCurrentPlayer == currentPlayer)
+          sb.append(" and gets another turn.");
+        else
+          sb.append(".");
       }
     }
     gameForm.getStatus().setText(sb.toString());
     if (mancala.isOver()) {
-      new GameOverDialog("Game Over").setVisible(true);
+      new GameOverDialog(gameOver.toString(), mancala).setVisible(true);
     }
   }
 
