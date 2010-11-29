@@ -94,6 +94,10 @@ public class GameForm {
     return name1;
   }
 
+  public JLabel getStatus() {
+    return status;
+  }
+
   public JLabel getName2() {
     return name2;
   }
@@ -127,7 +131,7 @@ public class GameForm {
     status.setFont(new Font(status.getFont().getName(), status.getFont().getStyle(), 16));
     status.setHorizontalAlignment(2);
     status.setHorizontalTextPosition(2);
-    status.setText("It is Alice's turn");
+    status.setText("Start a new game!");
     panel3.add(status, BorderLayout.CENTER);
     final JLabel label1 = new JLabel();
     label1.setFont(new Font(label1.getFont().getName(), label1.getFont().getStyle(), 16));
