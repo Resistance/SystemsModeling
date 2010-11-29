@@ -51,26 +51,27 @@ public class NamesForm extends JDialog {
   }
 
   public void setData(NamesData data) {
-    leftPlayerTextField.setText(data.getName1());
-    rightPlayerTextField.setText(data.getName2());
+    leftPlayerTextField.setText(data.getLeft());
+    rightPlayerTextField.setText(data.getRight());
+    seedsField.setText("" + data.getSeeds());
   }
 
   public void getData(NamesData data) {
-    data.setName1(rightPlayerTextField.getText());
-    data.setName2(leftPlayerTextField.getText());
+    data.setLeft(leftPlayerTextField.getText());
+    data.setRight(rightPlayerTextField.getText());
     try {
       data.setSeeds(Integer.parseInt(seedsField.getText()));
     }
     catch(Exception e) {
-      data.setSeeds(4);
+      data.setSeeds(0);
     }
     data.setOk(ok);
   }
 
   public boolean isModified(NamesData data) {
-    if (leftPlayerTextField.getText() != null ? !leftPlayerTextField.getText().equals(data.getName1()) : data.getName1() != null)
+    if (leftPlayerTextField.getText() != null ? !leftPlayerTextField.getText().equals(data.getLeft()) : data.getLeft() != null)
       return true;
-    if (rightPlayerTextField.getText() != null ? !rightPlayerTextField.getText().equals(data.getName2()) : data.getName2() != null)
+    if (rightPlayerTextField.getText() != null ? !rightPlayerTextField.getText().equals(data.getRight()) : data.getRight() != null)
       return true;
     return false;
   }

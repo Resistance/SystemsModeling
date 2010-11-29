@@ -31,8 +31,8 @@ public class GameForm {
   private JLabel status;
   private JButton a0;
   private JButton b0;
-  private JLabel name1;
-  private JLabel name2;
+  private JLabel left;
+  private JLabel right;
 
   public JButton getB4() {
     return b4;
@@ -90,16 +90,16 @@ public class GameForm {
     return b0;
   }
 
-  public JLabel getName1() {
-    return name1;
+  public JLabel getLeft() {
+    return left;
   }
 
   public JLabel getStatus() {
     return status;
   }
 
-  public JLabel getName2() {
-    return name2;
+  public JLabel getRight() {
+    return right;
   }
 
   {
@@ -310,10 +310,10 @@ public class GameForm {
     gbc.fill = GridBagConstraints.BOTH;
     panel4.add(panel7, gbc);
     panel7.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0), null));
-    name1 = new JLabel();
-    name1.setFont(new Font(name1.getFont().getName(), name1.getFont().getStyle(), 16));
-    name1.setText("Player 1");
-    panel7.add(name1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    left = new JLabel();
+    left.setFont(new Font(left.getFont().getName(), left.getFont().getStyle(), 16));
+    left.setText("Player 1");
+    panel7.add(left, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     final Spacer spacer1 = new Spacer();
     panel7.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     final JPanel panel8 = new JPanel();
@@ -324,10 +324,10 @@ public class GameForm {
     gbc.fill = GridBagConstraints.BOTH;
     panel4.add(panel8, gbc);
     panel8.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(0, 0, 2, 0), null));
-    name2 = new JLabel();
-    name2.setFont(new Font(name2.getFont().getName(), name2.getFont().getStyle(), 16));
-    name2.setText("Player 2");
-    panel8.add(name2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    right = new JLabel();
+    right.setFont(new Font(right.getFont().getName(), right.getFont().getStyle(), 16));
+    right.setText("Player 2");
+    panel8.add(right, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     final Spacer spacer2 = new Spacer();
     panel8.add(spacer2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     final JSeparator separator1 = new JSeparator();

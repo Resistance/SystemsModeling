@@ -2,11 +2,15 @@ package project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Collection;
 import java.util.List;
 
 public class NewGameAction extends AbstractAction {
   private Mancala mancala;
+
+  public NewGameAction(String name, Mancala mancala) {
+    super(name);
+    this.mancala = mancala;
+  }
 
   public NewGameAction(String name) {
     super(name);
@@ -16,8 +20,9 @@ public class NewGameAction extends AbstractAction {
     NamesData data = new NamesData();
     List<? extends Player> players = mancala.getPlayers();
     if (players.size() == 2) {
-      data.setName1(players.get(0).getName());
-      data.setName2(players.get(1).getName());
+      data.setRight(players.get(0).getName());
+      data.setLeft(players.get(1).getName());
+      data.setSeeds(mancala.getSeedsPerPit());
     }
     NamesForm namesForm = new NamesForm();
     namesForm.setData(data);
@@ -25,8 +30,8 @@ public class NewGameAction extends AbstractAction {
     namesForm.getData(data);
     if (data.isOk()) {
       mancala.removeAllFromPlayers();
-      mancala.addToPlayers(new Player().withName(data.getName1()));
-      mancala.addToPlayers(new Player().withName(data.getName2()));
+      mancala.addToPlayers(new Player().withName(data.getRight()));
+      mancala.addToPlayers(new Player().withName(data.getLeft()));
       mancala.init(data.getSeeds());
     }
   }

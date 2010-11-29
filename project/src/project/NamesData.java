@@ -1,38 +1,35 @@
 package project;
 
 public class NamesData {
-  private String name1;
-  private String name2;
+  private String left;
+  private String right;
   private int seeds;
   private boolean ok;
 
   public NamesData() {
   }
 
-  public String getName1() {
-    if (name1 != null && name1.length() > 0) {
-      return name1;
-    }
-    return "Player 1";
+  public String getLeft() {
+    if (left != null && left.length() > 0) return left;
+    return "Left Player";
   }
 
-  public void setName1(final String name1) {
-    this.name1 = name1;
+  public void setLeft(final String leftPlayer) {
+    this.left = leftPlayer;
   }
 
-  public String getName2() {
-    if (name2 != null && name2.length() > 0) {
-      return name2;
-    }
-    return "Player 2";
+  public String getRight() {
+    if (right != null && right.length() > 0) return right;
+    return "Right Player";
   }
 
-  public void setName2(final String name2) {
-    this.name2 = name2;
+  public void setRight(final String rightPlayer) {
+    this.right = rightPlayer;
   }
 
   public int getSeeds() {
-    return seeds;
+    if (seeds != 0) return seeds;
+    return 4;
   }
 
   public void setSeeds(final int seeds) {
