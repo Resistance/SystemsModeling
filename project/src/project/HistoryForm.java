@@ -14,6 +14,7 @@ public class HistoryForm extends JDialog {
   private JTextArea textArea1;
   private JPanel panel1;
   private JButton closeButton;
+  private static final String EMPTY_MESSAGE = "-- No entries yet. Play more!";
 
   public HistoryForm() {
     setTitle("History");
@@ -25,7 +26,7 @@ public class HistoryForm extends JDialog {
     setModal(true);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     String s2 = HistoryHelper.readAllReverse();
-    textArea1.setText(s2);
+    textArea1.setText(s2 != null ? s2 : EMPTY_MESSAGE);
 
     closeButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -57,12 +58,6 @@ public class HistoryForm extends JDialog {
     panel1 = new JPanel();
     panel1.setLayout(new BorderLayout(0, 0));
     panel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2), null));
-    textArea1 = new JTextArea();
-    textArea1.setColumns(50);
-    textArea1.setEditable(false);
-    textArea1.setRows(10);
-    textArea1.setToolTipText("Previously played games");
-    panel1.add(textArea1, BorderLayout.CENTER);
     final JPanel panel2 = new JPanel();
     panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
     panel1.add(panel2, BorderLayout.SOUTH);
@@ -72,8 +67,23 @@ public class HistoryForm extends JDialog {
     final Spacer spacer1 = new Spacer();
     panel2.add(spacer1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     final JLabel label1 = new JLabel();
+    label1.setFont(new Font(label1.getFont().getName(), label1.getFont().getStyle(), 16));
     label1.setText("Previously played Games (latest at the top):");
     panel1.add(label1, BorderLayout.NORTH);
+    final JPanel panel3 = new JPanel();
+    panel3.setLayout(new GridLayoutManager(1, 1, new Insets(5, 0, 5, 0), -1, -1));
+    panel1.add(panel3, BorderLayout.WEST);
+    final JPanel panel4 = new JPanel();
+    panel4.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+    panel3.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+    panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
+    textArea1 = new JTextArea();
+    textArea1.setColumns(50);
+    textArea1.setEditable(false);
+    textArea1.setFont(new Font(textArea1.getFont().getName(), textArea1.getFont().getStyle(), 14));
+    textArea1.setRows(10);
+    textArea1.setToolTipText("Previously played games");
+    panel4.add(textArea1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
   }
 
   /**
