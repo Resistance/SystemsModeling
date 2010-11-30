@@ -26,11 +26,13 @@ public class ReseedAction extends AbstractAction implements PropertyChangeListen
     }
   }
 
+  // update the number displayed on the pit
   private void invalidate() {
     updateEnabled();
     putValue(Action.NAME, pit != null ? String.valueOf(pit.getSeeds()) : DEFAULT_SEEDS);
   }
 
+  // enable an action (and its button automatically with it) if there's a game running and if the pit wants to be enabled
   private void updateEnabled() {
     setEnabled((mancala != null) && (pit != null) && wantEnabled);
   }
@@ -60,6 +62,7 @@ public class ReseedAction extends AbstractAction implements PropertyChangeListen
     return wantEnabled;
   }
 
+  // mark the pit as 'wants to be enabled'
   public void setWantEnabled(boolean wantEnabled) {
     if (wantEnabled != this.wantEnabled) {
       this.wantEnabled = wantEnabled;

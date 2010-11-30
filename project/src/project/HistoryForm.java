@@ -25,6 +25,8 @@ public class HistoryForm extends JDialog {
     setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
     setModal(true);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+    // read history file and place content to the textArea
     String s2 = HistoryHelper.readAllReverse();
     textArea1.setText(s2 != null ? s2 : EMPTY_MESSAGE);
 

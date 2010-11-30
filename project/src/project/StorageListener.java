@@ -24,6 +24,7 @@ public class StorageListener implements PropertyChangeListener {
     return storage;
   }
 
+  // nothing special, just set a new Storage
   public void setStorage(Storage storage) {
     if (storage != this.storage) {
       if (this.storage != null) {
@@ -37,6 +38,7 @@ public class StorageListener implements PropertyChangeListener {
     }
   }
 
+  // update the number displayed on the storage
   private void invalidate() {
     if (button != null) {
       button.setText(storage != null ? String.valueOf(storage.getSeeds()) : DEFAULT_SEEDS);
