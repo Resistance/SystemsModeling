@@ -11,83 +11,51 @@ import java.io.*;
  */
 public class HistoryHelper {
   private static final String HISTORY_FILE_NAME = "mancala_hist.txt";
-  private static String EMPTY_MESSAGE = "-- No entries yet. Play more!";
 
   public static String readAllReverse() {
-    BufferedReader reader = getFileReader();
-
-    if (reader != null) {
-      StringBuilder sb = new StringBuilder();
-      String s;
-      try {
-        while ((s = reader.readLine()) != null) {
-          sb.insert(0, '\n');
-          sb.insert(0, s);
+    BufferedReader reader = null;
+    try {
+      reader = new BufferedReader(new InputStreamReader(new FileInputStream(HISTORY_FILE_NAME)));
+      StringBuilder lines = new StringBuilder();
+      String line;
+      boolean empty = true;
+      while ((line = reader.readLine()) != null) {
+        line = line.trim();
+        if (!line.isEmpty()) {
+          lines.insert(0, '\n');
+          lines.insert(0, line);
+          empty = false;
         }
-      } catch (IOException e) {
-        e.printStackTrace();
-      } finally {
+      }
+      if (!empty) {
+        return lines.toString();
+      }
+    } catch (FileNotFoundException ignored) {
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if (reader != null) {
         try {
           reader.close();
         } catch (IOException e) {
           e.printStackTrace();
         }
       }
-      return sb.toString();
     }
     return null;
   }
 
-  static void append(String s) {
-    PrintWriter writer = getFileWriter();
-
-    if (writer != null) {
-      try {
-        writer.println(s);
-      } finally {
-        writer.close();
-      }
-    }
-  }
-  
-  private static BufferedReader getFileReader() {
-
-    try {
-      // Create file if it does not exist
-      boolean created = new File(HISTORY_FILE_NAME).createNewFile();
-      if (created) {
-        PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(HISTORY_FILE_NAME, true)));
-        writer.println(EMPTY_MESSAGE);
-        writer.close();
-      }
-      return new BufferedReader(new InputStreamReader(new FileInputStream(HISTORY_FILE_NAME)));
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
-    }
-    return null;
-  }
-
-  private static PrintWriter getFileWriter() {
+  public static void append(String s) {
     PrintWriter writer = null;
-
     try {
-      // Create file if it does not exist
-      File history = new File(HISTORY_FILE_NAME);
-      boolean created = history.createNewFile();
-
-      if (!created) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(HISTORY_FILE_NAME)));
-
-        if (reader.readLine().equals(EMPTY_MESSAGE)) {
-          history.delete();
-          history.createNewFile();
-        }
+      writer = new PrintWriter(new FileOutputStream(HISTORY_FILE_NAME, true));
+      writer.println(s);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } finally {
+      if (writer != null) {
+        writer.close();
       }
-
-      return new PrintWriter(new BufferedOutputStream(new FileOutputStream(HISTORY_FILE_NAME, true)));
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
     }
-    return null;
   }
 }
