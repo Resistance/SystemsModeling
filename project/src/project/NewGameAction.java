@@ -16,9 +16,12 @@ public class NewGameAction extends AbstractAction {
     super(name);
   }
 
+  // start a new Game
   public void actionPerformed(ActionEvent e) {
     NamesData data = new NamesData();
     List<? extends Player> players = mancala.getPlayers();
+
+    // ask players' names and seeds-per-pit from the Mancala and display them in the NamesForm
     if (players.size() == 2) {
       data.setRight(players.get(0).getName());
       data.setLeft(players.get(1).getName());
@@ -28,6 +31,8 @@ public class NewGameAction extends AbstractAction {
     namesForm.setData(data);
     namesForm.setVisible(true);
     namesForm.getData(data);
+
+    // get the new players' names and seeds-per-pit from the NamesForm and set them to the Mancala
     if (data.isOk()) {
       mancala.removeAllFromPlayers();
       mancala.addToPlayers(new Player().withName(data.getRight()));

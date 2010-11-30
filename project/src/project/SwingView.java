@@ -24,6 +24,7 @@ public class SwingView implements View {
   private int currentPlayerIndex;
 
   public SwingView() {
+    // set up GUI
     JMenu gameMenu = new JMenu("Menu");
     JMenuItem newGame = new JMenuItem();
     newGame.setAction(newGameAction);
@@ -48,6 +49,8 @@ public class SwingView implements View {
         gameForm.getA1(), gameForm.getA2(), gameForm.getA3(), gameForm.getA4(), gameForm.getA5(), gameForm.getA6(),
         gameForm.getB1(), gameForm.getB2(), gameForm.getB3(), gameForm.getB4(), gameForm.getB5(), gameForm.getB6()
     };
+
+    // add listeners
     for (int i = 0; i < NUM_PLAYERS * PITS_PER_PLAYER; i++) {
       ReseedAction reseedAction = new ReseedAction();
       reseedActions.add(reseedAction);
@@ -89,19 +92,25 @@ public class SwingView implements View {
         throw new IllegalStateException("The player + " + player.getName() + " has " + pitsSize + " pits, but this view requires exactly " + PITS_PER_PLAYER);
       }
       int j = 0;
+
+      // assign pits to reseedActions
       for (Pit pit : pits) {
         reseedActions.get(i * PITS_PER_PLAYER + j).setPit(pit);
         j++;
       }
+
+      // assign storages to storageListeners
       storageListeners.get(i).setStorage(player.getStorage());
       nameLabels[i].setText(player.getName());
       i++;
     }
+
     updateReseedActionWantEnabled();
     gameForm.getStatus().setText(mancala.getCurrentPlayer().getName() + " begins.");
   }
 
   public void beforeReseed() {
+    // save some values for comparison in afterReseed()
     currentPlayer = mancala.getCurrentPlayer();
     currentPlayerScore = currentPlayer.getScore();
     otherPlayerScore = currentPlayer.getNext().getScore();
@@ -113,6 +122,7 @@ public class SwingView implements View {
     int currentPlayerNewScore = currentPlayer.getScore();
     int currentPlayerScoreDiff = currentPlayerNewScore - currentPlayerScore;
 
+    // compose strings for status message, game over message and history
     StringBuilder sb = new StringBuilder();
     StringBuilder gameOver = new StringBuilder();
 
@@ -130,11 +140,13 @@ public class SwingView implements View {
         gameOver.append(winner.getNext().getName());
         gameOver.append("'. Well done!");
       }
+      // no winner
       else {
         sb = new StringBuilder("Draw game.");
         gameOver.append("Draw game, well played!");
       }
 
+      // prepare string for history entry
       StringBuilder history = new StringBuilder(new SimpleDateFormat("[dd.MM.yyyy HH:mm] ").format(new Date()));
       Player first = winner == null ? mancala.getPlayers().get(0) : winner;
       Player second = first.getNext();
@@ -161,7 +173,9 @@ public class SwingView implements View {
       String s = history.toString();
       HistoryHelper.append(s);
     }
+    // game is not over
     else {
+      // if somebody scored, put this to the status
       if (currentPlayerScoreDiff > 0) {
         sb.append(currentPlayer.getName());
         sb.append(" scored ");
@@ -174,11 +188,14 @@ public class SwingView implements View {
       }
     }
     gameForm.getStatus().setText(sb.toString());
+
+    // display game over message
     if (mancala.isOver()) {
       new GameOverDialog(gameOver.toString(), mancala).setVisible(true);
     }
   }
 
+  // call setWantEnabled() on all pits: with true, if they belong to the current player, else false
   private void updateReseedActionWantEnabled() {
     boolean over = mancala.isOver();
     int currentPlayerIndex = mancala.indexOfPlayers(mancala.getCurrentPlayer());
@@ -193,6 +210,7 @@ public class SwingView implements View {
     return mancala;
   }
 
+  // nothing special, just set a new Mancala
   public boolean setMancala(Mancala value) {
     if (value == mancala) {
       return false;
