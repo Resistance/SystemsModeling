@@ -98,7 +98,7 @@ public class SwingView implements View {
       i++;
     }
     updateReseedActionWantEnabled();
-    gameForm.getStatus().setText(mancala.getCurrentPlayer().getName() + " starts this game.");
+    gameForm.getStatus().setText(mancala.getCurrentPlayer().getName() + " begins.");
   }
 
   public void beforeReseed() {
@@ -131,31 +131,32 @@ public class SwingView implements View {
         gameOver.append("'. Well done!");
       }
       else {
-        sb.append("Draw game.");
+        sb = new StringBuilder("Draw game.");
         gameOver.append("Draw game, well played!");
       }
 
       StringBuilder history = new StringBuilder(new SimpleDateFormat("[dd.MM.yyyy HH:mm] ").format(new Date()));
       Player first = winner == null ? mancala.getPlayers().get(0) : winner;
       Player second = first.getNext();
-      if (winner != null) {
-        history.append('\'');
-        history.append(first.getName());
-        history.append("\' won \'");
-        history.append(second.getName());
-        history.append('\'');
-      }
-      else {
-        history.append('\'');
-        history.append(first.getName());
-        history.append("\' and \'");
-        history.append(second.getName());
-        history.append("\' were tied");
-      }
-      history.append(" with score ");
+
+      history.append('\'');
+      history.append(first.getName());
+      history.append("\' and \'");
+      history.append(second.getName());
+      history.append("\' played ");
       history.append(first.getScore());
       history.append(':');
       history.append(second.getScore());
+      history.append(". ");
+
+      if (winner != null) {
+        history.append("\'");
+        history.append(winner.getName());
+        history.append("\' won!");
+      }
+      else {
+        history.append("Draw game.");
+      }
 
       String s = history.toString();
       HistoryHelper.append(s);

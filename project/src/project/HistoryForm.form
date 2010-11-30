@@ -9,15 +9,6 @@
       <size top="2" left="2" bottom="2" right="2"/>
     </border>
     <children>
-      <component id="ed248" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
-        <constraints border-constraint="Center"/>
-        <properties>
-          <columns value="50"/>
-          <editable value="false"/>
-          <rows value="10"/>
-          <toolTipText value="Previously played games"/>
-        </properties>
-      </component>
       <grid id="b610a" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="South"/>
@@ -42,9 +33,42 @@
       <component id="aff92" class="javax.swing.JLabel">
         <constraints border-constraint="North"/>
         <properties>
+          <font size="16"/>
           <text value="Previously played Games (latest at the top):"/>
         </properties>
       </component>
+      <grid id="771d2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="0" bottom="5" right="0"/>
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="8574c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="etched">
+              <size top="2" left="2" bottom="2" right="2"/>
+            </border>
+            <children>
+              <component id="ed248" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <columns value="50"/>
+                  <editable value="false"/>
+                  <font size="14"/>
+                  <rows value="10"/>
+                  <toolTipText value="Previously played games"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

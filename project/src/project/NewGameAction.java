@@ -32,6 +32,7 @@ public class NewGameAction extends AbstractAction {
       mancala.removeAllFromPlayers();
       mancala.addToPlayers(new Player().withName(data.getRight()));
       mancala.addToPlayers(new Player().withName(data.getLeft()));
+      mancala.setSeedsPerPit(data.getSeeds());
       mancala.init();
     }
   }
