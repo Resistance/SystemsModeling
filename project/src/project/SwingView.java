@@ -24,7 +24,7 @@ public class SwingView implements View {
   private int currentPlayerIndex;
 
   public SwingView() {
-    JMenu gameMenu = new JMenu("Game");
+    JMenu gameMenu = new JMenu("Mancala");
     JMenuItem newGame = new JMenuItem();
     newGame.setAction(newGameAction);
     gameMenu.add(newGame);
